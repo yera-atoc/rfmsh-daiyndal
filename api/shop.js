@@ -36,7 +36,7 @@ async function catalog() {
     products: PRODUCTS.filter((p) => !p.hidden).map(({ id, cat, price, title, items, best }) => ({ id, cat, price, title, items, best: !!best })),
     counts,
     pay: pay.publicConfig(),
-    whatsapp: process.env.WHATSAPP || '77002588400',
+    whatsapp: process.env.WHATSAPP || '77773845920',
   }
 }
 
