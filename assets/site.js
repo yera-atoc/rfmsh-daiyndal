@@ -89,9 +89,18 @@
       var p = (c.products || []).filter(function (x) { return x.id === id })[0]
       if (!p) return toast(t('Өнім табылмады', 'Товар не найден'))
       if (c.pay && c.pay.card) return payCard(p)
-      // Карта әлі қосылмаған (CloudPayments кілттері жоқ) — уақытша WhatsApp арқылы
-      var wa = 'https://wa.me/' + (c.whatsapp || '') + '?text=' + encodeURIComponent(t('Сәлеметсіз бе! Мен сатып алғым келеді: ', 'Здравствуйте! Хочу купить: ') + p.title[lang] + ' (' + fmt(p.price) + ' ₸)')
-      modal('<h3>' + esc(p.title[lang]) + '</h3><p>' + t('Картамен онлайн төлем жақында қосылады. Әзірге WhatsApp арқылы сатып алыңыз.', 'Онлайн-оплата картой скоро заработает. Пока купите через WhatsApp.') + '</p><div class="sum"><span>' + t('Сомасы', 'Сумма') + '</span><b>' + fmt(p.price) + ' ₸</b></div><div class="bt"><a class="btn" href="' + wa + '" target="_blank" rel="noopener">' + t('WhatsApp арқылы сатып алу', 'Купить через WhatsApp') + '</a><button class="btn g" data-act="code">' + t('Менде код бар', 'У меня есть код') + '</button><button class="btn l" data-act="close">' + t('Жабу', 'Закрыть') + '</button></div>')
+      // Онлайн төлем қосылмаған — картаға аударым (Kaspi), чек WhatsApp-қа, код қолмен беріледі
+      var card = (c.transferCard || '').replace(/(\d{4})(?=\d)/g, '$1 ')
+      var wa = 'https://wa.me/' + (c.whatsapp || '') + '?text=' + encodeURIComponent(t('Сәлеметсіз бе! Төледім: ', 'Здравствуйте! Оплатил(а): ') + p.title[lang] + ' — ' + fmt(p.price) + ' ₸. ' + t('Чекті жіберемін.', 'Отправляю чек.'))
+      modal('<h3>' + esc(p.title[lang]) + '</h3>' +
+        '<div class="sum"><span>' + t('Сомасы', 'Сумма') + '</span><b>' + fmt(p.price) + ' ₸</b></div>' +
+        '<ol style="color:var(--mu);font-size:15px;padding-left:20px;margin:16px 0 0">' +
+        '<li>' + t('Kaspi қосымшасында: Аударымдар → Картаға. Осы картаға <b style="color:var(--tx)">' + fmt(p.price) + ' ₸</b> аударыңыз:', 'В приложении Kaspi: Переводы → На карту. Переведите <b style="color:var(--tx)">' + fmt(p.price) + ' ₸</b> на карту:') + '</li></ol>' +
+        '<div class="code" style="font-size:20px">' + esc(card) + '</div>' +
+        '<button class="btn g wide" style="margin-top:8px" data-act="copy" data-v="' + esc(c.transferCard || '') + '">' + t('Карта нөмірін көшіру', 'Скопировать номер карты') + '</button>' +
+        '<ol start="2" style="color:var(--mu);font-size:15px;padding-left:20px;margin:14px 0 0"><li>' + t('Чекті WhatsApp-қа жіберіңіз.', 'Отправьте чек в WhatsApp.') + '</li><li>' + t('Активация кодын аласыз — оны «Менде код бар» батырмасы арқылы енгізіңіз, тест бірден ашылады.', 'Получите код активации и введите его через «У меня есть код» — тест откроется сразу.') + '</li></ol>' +
+        '<div class="bt"><a class="btn" href="' + wa + '" target="_blank" rel="noopener">' + t('Чекті WhatsApp-қа жіберу', 'Отправить чек в WhatsApp') + '</a><button class="btn g" data-act="code">' + t('Менде код бар', 'У меня есть код') + '</button><button class="btn l" data-act="close">' + t('Жабу', 'Закрыть') + '</button></div>' +
+        '<p style="font-size:12px;margin-top:12px">' + t('Төлеу арқылы <a href="/oferta.html" style="color:var(--bl)">офертамен</a> келісесіз.', 'Оплачивая, вы соглашаетесь с <a href="/oferta.html" style="color:var(--bl)">офертой</a>.') + '</p>')
     })
   }
 

@@ -37,6 +37,8 @@ async function catalog() {
     counts,
     pay: pay.publicConfig(),
     whatsapp: process.env.WHATSAPP || '77773845920',
+    // Онлайн карта төлемі қосылмаса — осы картаға аударым (Kaspi). Vercel-де TRANSFER_CARD арқылы ауыстыруға болады.
+    transferCard: (process.env.TRANSFER_CARD || '4400430370817261').replace(/\D/g, ''),
   }
 }
 
