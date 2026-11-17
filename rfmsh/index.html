@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="kk"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>РФМШ — дайындық: сынақ тесттері · Daiyndal</title>
+<meta name="description" content="РФМШ-ға түсу емтиханы форматындағы 15 сынақ тесті: таймер, жауап парағы, 150 баллдық есептеу және дұрыс жауаптар.">
+<link rel="icon" href="/assets/mark.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/site.css">
+<script src="/assets/site.js" defer></script>
+<style>
+#app{display:none;min-height:100vh;background:var(--bg2)}body.app #land{display:none}body.app #app{display:block}
+.tp{position:sticky;top:0;background:var(--nav);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--ln);z-index:10}
+.tp .in{max-width:820px;margin:0 auto;padding:10px 22px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.tm{font-variant-numeric:tabular-nums;font-weight:600;font-size:17px}.tm.lo{color:var(--no)}
+.nv{display:flex;justify-content:space-between;margin-top:18px;gap:10px;flex-wrap:wrap}
+.sc{text-align:center;padding:30px 0 10px}.sc .b{font-size:clamp(64px,14vw,96px);font-weight:700;letter-spacing:-.05em;line-height:1}.sc p{color:var(--mu);margin-top:8px}
+.tw{max-width:1100px;margin:0 auto;padding:16px 22px 100px;display:grid;grid-template-columns:1fr 300px;gap:20px;align-items:start}
+.pgs img{display:block;width:100%;min-height:200px;background:#fff;border-radius:14px;margin-bottom:14px;border:1px solid var(--ln)}
+.ans{background:var(--bg);border-radius:22px;padding:20px;position:sticky;top:66px;max-height:calc(100vh - 90px);overflow:auto}
+.ans h3{font-size:19px;font-weight:600}.cn{color:var(--mu);font-size:14px;margin:4px 0 12px}
+.ag{display:grid;grid-template-columns:1fr 1fr;gap:8px}.lv{grid-column:1/-1;font-size:12px;font-weight:600;color:var(--mu);margin-top:10px}
+.ag label{display:flex;align-items:center;gap:8px;background:var(--bg2);border-radius:10px;padding:0 10px}.ag label span{font-size:13px;color:var(--mu);width:22px;font-weight:600}
+.ag input{margin:0;border:0;background:transparent;padding:10px 0;font-size:16px;width:100%}
+.fab{display:none}
+@media(max-width:900px){.tw{grid-template-columns:1fr;padding:12px 12px 90px}.ans{position:fixed;left:0;right:0;bottom:0;top:auto;max-height:70vh;border-radius:22px 22px 0 0;transform:translateY(105%);transition:transform .25s;z-index:40;box-shadow:0 -8px 30px rgba(0,0,0,.25);padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))}.ans.on{transform:none}.fab{display:inline-flex;position:fixed;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:45;box-shadow:0 6px 20px rgba(0,0,0,.25);white-space:nowrap}}
+.rr{display:grid;grid-template-columns:34px 1fr 1fr 62px;gap:8px;padding:10px 16px;border-bottom:1px solid var(--ln);font-size:15px;align-items:center}.rr:last-child{border:0}.rr.h{font-size:12px;color:var(--mu);font-weight:600}.rr.ok b{color:var(--ok)}.rr.no b{color:var(--no)}
+.lb{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0}.lb div{background:var(--bg);border-radius:16px;padding:14px;text-align:center}.lb b{display:block;font-size:20px}.lb span{color:var(--mu);font-size:13px}
+</style>
+</head><body>
+<span hidden data-ru-title="РФМШ — подготовка: пробные тесты · Daiyndal"></span>
+<div id="land">
+<header class="top"><div class="w">
+  <a class="logo" href="/"><img src="/assets/mark.svg" alt="">Daiyndal</a>
+  <nav class="mn"><a href="#about" data-ru="Об экзамене">Емтихан туралы</a><a href="#cities" data-ru="Города">Қалалар</a><a href="#how" data-ru="Как это работает">Қалай жұмыс істейді</a><a href="#pricing" data-ru="Цены">Бағасы</a></nav>
+  <div class="hd-r"><div class="lang" role="group" aria-label="Тіл / Язык"><button data-lang="kk" aria-pressed="true">ҚАЗ</button><button data-lang="ru" aria-pressed="false">РУС</button></div>
+  <a class="btn sm" href="#practice" data-ru="Практика">Жаттығу</a></div>
+</div></header>
+<main>
+<section class="hero c" id="about"><div class="w">
+<p class="eb" data-ru="РФМШ 2027 · Сборник тестов">РФМШ 2027 · Тест жинағы</p>
+<h1 data-ru="Будьте готовы<br>к вступительному экзамену.">Түсу емтиханына<br>дайын болыңыз.</h1>
+<p class="lead" data-ru="Сборник тестов для поступающих в 2027 году в «Республиканскую физико-математическую школу». Таймер, бланк ответов, подсчёт из 150 баллов и правильные ответы.">2027 жылы «Республикалық физика-математика мектебіне» түсушілерге арналған тесттер жинағы. Таймер, жауап парағы, 150 баллдық есептеу және дұрыс жауаптар.</p>
+<div class="acts"><a class="btn" href="#practice" data-ru="Бесплатный демо-тест">Тегін демо тест</a><a class="btn l" href="#pricing" data-ru="Смотреть цены ›">Бағаларды көру ›</a></div>
+<div class="dev" aria-hidden="true"><small data-ru="Задание 2 / 30 · Уровень A · 3 балла">Тапсырма 2 / 30 · А деңгейі · 3 балл</small><h3 data-ru="Найдите следующий член ряда 2, 6, 18, 54, …">2, 6, 18, 54, … қатарының келесі мүшесін табыңыз.</h3>
+<div class="o s"><i>№2</i><span data-ru="Ответ: 162">Жауап: 162</span></div><div class="o"><i>№3</i><span data-ru="Ответ: —">Жауап: —</span></div></div></div></section>
+<section class="c" id="cities"><div class="w"><p class="eb" data-ru="Города">Қалалар</p><h2 data-ru="Где проходит тест.">Тест қайда өтеді.</h2>
+<p class="lead" data-ru="РФМШ принимает учеников в нескольких городах.">РФМШ бірнеше қалада оқушы қабылдайды.</p>
+<div class="tb"><div class="tr three h"><span data-ru="Город">Қала</span><span data-ru="Классы">Сыныптар</span><span data-ru="Предметы теста">Тест пәндері</span></div>
+<div class="tr three"><b data-ru="Алматы">Алматы</b><span data-ru="7 и 8 класс">7 және 8 сынып</span><span data-ru="7 класс: математика и логика. 8 класс: алгебра, геометрия, физика">7-сынып: математика және логика. 8-сынып: алгебра, геометрия, физика</span></div>
+<div class="tr three"><b data-ru="Астана">Астана</b><span data-ru="1 и 7 класс">1 және 7 сынып</span><span data-ru="7 класс: математика и логика">7-сынып: математика және логика</span></div>
+<div class="tr three"><b data-ru="Уральск">Орал</b><span data-ru="1 класс (платно)">1 сынып (ақылы)</span><span>—</span></div></div>
+<p class="note" data-ru="В прошлые годы онлайн-регистрация открывалась в январе, а экзамен на грант проходил весной (апрель–май). Даты и список городов могут меняться — перед регистрацией проверьте на официальном сайте РФМШ.">Өткен жылдары онлайн тіркеу қаңтарда ашылып, грантқа емтихан көктемде (сәуір–мамыр) өтті. Нақты күндер мен қалалар тізімі жыл сайын өзгеруі мүмкін. Тіркелер алдында РФМШ-ның ресми сайтынан тексеріңіз.</p></div></section>
+<section class="alt c" id="how"><div class="w"><p class="eb" data-ru="Как это работает">Қалай жұмыс істейді</p><h2 data-ru="Три простых шага.">Үш қарапайым қадам.</h2>
+<div class="grid">
+<div class="card"><div class="num">01</div><h3 data-ru="Выберите вариант">Нұсқаны таңдаңыз</h3><p data-ru="Начните с демо-теста, затем откройте полные варианты.">Демо тесттен бастаңыз, содан кейін толық нұсқаларды ашыңыз.</p></div>
+<div class="card"><div class="num">02</div><h3 data-ru="Решайте в формате экзамена">Емтихан форматында шешіңіз</h3><p data-ru="Таймер на 120 минут. Читаете задания и вписываете целые числа в бланк ответов.">Таймер 120 минутқа қойылады. Тапсырмаларды оқып, жауап парағына бүтін сандарды енгізесіз.</p></div>
+<div class="card"><div class="num">03</div><h3 data-ru="Разберите результат">Нәтижені талдаңыз</h3><p data-ru="Общий балл, результат по уровням и правильные ответы — сразу.">Жалпы балл, деңгейлер бойынша нәтиже және дұрыс жауаптар бірден көрсетіледі.</p></div>
+</div></div></section>
+<section class="c" id="pricing"><div class="w"><p class="eb" data-ru="Цены">Бағасы</p><h2 data-ru="Выберите пакет.">Пакетті таңдаңыз.</h2>
+<p class="lead" data-ru="Разовая оплата картой. Сначала бесплатно решите пример вопросов.">Картамен бір реттік төлем. Алдымен үлгі сұрақтарды тегін шешіп көріңіз.</p>
+<div class="grid" style="text-align:left">
+<div class="pr" style="background:var(--bg2)"><h3 data-ru="1 вариант">1 нұсқа</h3><div class="n">4 000 ₸</div><small data-ru="1 вариант = 4 000 ₸">1 нұсқа = 4 000 ₸</small><ul><li data-ru="1 пробный тест">1 сынақ тесті</li><li data-ru="Бланк ответов, 150 баллов">Жауап парағы, 150 балл</li><li data-ru="Правильные ответы">Дұрыс жауаптар</li></ul><button class="btn g" data-buy="rf1" data-ru="Купить">Сатып алу</button></div>
+<div class="pr" style="background:var(--bg2)"><h3 data-ru="3 варианта">3 нұсқа</h3><div class="n">8 000 ₸</div><small data-ru="1 вариант ≈ 2 667 ₸">1 нұсқа ≈ 2 667 ₸</small><ul><li data-ru="3 пробных теста">3 сынақ тесті</li><li data-ru="Бланк ответов, 150 баллов">Жауап парағы, 150 балл</li><li data-ru="Правильные ответы">Дұрыс жауаптар</li></ul><button class="btn g" data-buy="rf3" data-ru="Купить">Сатып алу</button></div>
+<div class="pr" style="background:var(--bg2)"><h3 data-ru="5 вариантов">5 нұсқа</h3><div class="n">12 000 ₸</div><small data-ru="1 вариант = 2 400 ₸">1 нұсқа = 2 400 ₸</small><ul><li data-ru="5 пробных тестов">5 сынақ тесті</li><li data-ru="Бланк ответов, 150 баллов">Жауап парағы, 150 балл</li><li data-ru="Правильные ответы">Дұрыс жауаптар</li></ul><button class="btn g" data-buy="rf5" data-ru="Купить">Сатып алу</button></div>
+<div class="pr pop" style="background:var(--bg2);position:relative"><span class="tag" data-ru="Самый выгодный">Ең тиімді</span><h3 data-ru="15 вариантов">15 нұсқа</h3><div class="n">25 000 ₸</div><small data-ru="1 вариант ≈ 1 667 ₸">1 нұсқа ≈ 1 667 ₸</small><ul><li data-ru="Все 15 пробных тестов">Барлық 15 сынақ тесті</li><li data-ru="Бланк ответов, 150 баллов">Жауап парағы, 150 балл</li><li data-ru="Правильные ответы">Дұрыс жауаптар</li></ul><button class="btn" data-buy="rf15" data-ru="Купить">Сатып алу</button></div>
+</div>
+<p class="note"><span data-ru="Уже оплатили?">Төлем жасадыңыз ба?</span> <a href="#" data-act="code" style="color:var(--bl)" data-ru="Ввести код активации ›">Активация кодын енгізу ›</a></p></div></section>
+<section class="alt"><div class="w" style="max-width:720px"><h2 class="c" style="margin-bottom:34px" data-ru="Частые вопросы">Жиі қойылатын сұрақтар</h2>
+<details><summary data-ru="Это официальный сайт РФМШ?">Бұл РФМШ-ның ресми сайты ма?</summary><p data-ru="Нет. Это независимая платформа подготовки. Официальную информацию о приёме смотрите на сайте школы.">Жоқ. Бұл дайындыққа арналған тәуелсіз платформа. Қабылдау туралы ресми ақпаратты мектептің сайтынан қараңыз.</p></details>
+<details><summary data-ru="Как получить доступ после оплаты?">Төлемнен кейін қолжетімділікті қалай аламын?</summary><p data-ru="Оплатите картой на сайте — доступ откроется сразу, и вы получите код активации. Через Kaspi: напишите в WhatsApp, оплатите и получите код. Код вводится в разделе «Практика».">Сайтта картамен төлеңіз — қолжетімділік бірден ашылады және активация кодын аласыз. Kaspi арқылы: WhatsApp-қа жазып, төлеп, код аласыз. Кодты «Жаттығу» бөлімінде енгізесіз.</p></details>
+<details><summary data-ru="Тесты такие же, как на экзамене?">Тесттер нақты емтиханмен бірдей ме?</summary><p data-ru="Варианты составлены по формату вступительного экзамена, но конкретные задания могут отличаться.">Нұсқалар түсу емтиханының форматы бойынша құрастырылған, бірақ нақты тапсырмалар өзгеше болуы мүмкін.</p></details></div></section>
+</main>
+<footer class="ft"><div class="w"><span data-ru="Не является официальным ресурсом РФМШ · © 2026">РФМШ-ның ресми ресурсы емес · © 2026</span><span><a href="/" data-ru="Все экзамены">Барлық емтихандар</a> · <a href="/oferta.html" data-ru="Оферта">Оферта</a> · <a href="https://wa.me/77002588400" target="_blank" rel="noopener">WhatsApp</a> · <a href="https://instagram.com/nspm_tests_2026" target="_blank" rel="noopener">Instagram</a></span></div></footer>
+</div>
+<div id="app"></div>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+var t = DY.t, $ = function (i) { return document.getElementById(i) }
+var T = [{ id: 16, t: ['Үлгі сұрақтар (демо)', 'Пример вопросов (демо)'], n: 10, time: 20, free: 1 }]
+for (var i = 1; i <= 15; i++) T.push({ id: i, t: [i + '-нұсқа', 'Вариант ' + i], n: 30, time: 120 })
+var S = { best: {} }
+try { S = Object.assign(S, JSON.parse(DY.LS.get('rfmsh') || '{}')) } catch (e) {}
+function sv() { DY.LS.set('rfmsh', JSON.stringify(S)) }
+function V(id) { return T.filter(function (v) { return v.id === id })[0] }
+function nm(v) { return t(v.t[0], v.t[1]) }
+var LK = '<svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 1a3.5 3.5 0 0 0-3.5 3.5V6H4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1h-.5V4.5A3.5 3.5 0 0 0 8 1Zm2 5H6V4.5a2 2 0 1 1 4 0V6Z"/></svg>'
+var Q = null, tmr = null, urls = []
+function mx(v) { return v.id === 16 ? 10 : 150 }
+function pt(v, i) { return v.id === 16 ? 1 : (i < 10 ? 3 : i < 20 ? 5 : 7) }
+function open_(v) { var a = DY.access(); return v.free || DY.has('rf') || a.u.indexOf(v.id) > -1 }
+function fmt(s) { var h = Math.floor(s / 3600), m = Math.floor(s % 3600 / 60), r = s % 60, p = function (x) { return (x < 10 ? '0' : '') + x }; return (h ? h + ':' : '') + p(m) + ':' + p(r) }
+function route() { var a = location.hash === '#practice'; document.body.classList.toggle('app', a); if (a) list(); else clearInterval(tmr); scrollTo(0, 0) }
+addEventListener('hashchange', route)
+document.addEventListener('access', function () { if (location.hash === '#practice' && !Q) list() })
+document.addEventListener('langchange', function () { if (location.hash === '#practice' && !Q) list() })
+
+// Бұрынғы нұсқадағы (код браузерде тексерілген) сатып алуларды жаңа жүйеге көшіру
+function migrate() {
+  if (S.migrated || !(S.used && S.used.length)) return Promise.resolve()
+  return DY.api('/api/shop?a=migrate', { body: { hashes: S.used, token: DY.token() } }).then(function (j) {
+    if (!j.token) return
+    DY.setToken(j.token)
+    var ids = (S.un || []).filter(function (id) { return id >= 1 && id <= 15 })
+    return ids.reduce(function (p, id) { return p.then(function () { return DY.api('/api/shop?a=unlock', { body: { token: DY.token(), id: id } }).then(function (r) { if (r.token) DY.setToken(r.token) }) }) }, Promise.resolve())
+      .then(function () { S.migrated = 1; sv() })
+  })
+}
+
+function list() {
+  clearInterval(tmr); Q = null; urls.forEach(URL.revokeObjectURL); urls = []
+  var a = DY.access()
+  var h = '<div class="tp"><div class="in"><a class="logo" href="#"><img src="/assets/mark.svg" width="28" height="28" alt="">РФМШ</a><span class="hd-r"><span class="lang" role="group"><button data-lang="kk" aria-pressed="' + (DY.lang() === 'kk') + '">ҚАЗ</button><button data-lang="ru" aria-pressed="' + (DY.lang() === 'ru') + '">РУС</button></span><button class="btn sm g" data-act="code">' + t('Код енгізу', 'Ввести код') + '</button></span></div></div><div class="pw"><h1>' + t('Сынақ тесттері', 'Пробные тесты') + '</h1><p class="lead">' + t('РФМШ түсу емтиханы форматындағы нұсқалар: 30 тапсырма, 120 минут, 150 балл.', 'Варианты в формате вступительного экзамена РФМШ: 30 заданий, 120 минут, 150 баллов.') + '</p>' + (a.c > 0 && !DY.has('rf') ? '<p class="lead" style="margin-top:-14px;color:var(--bl)">' + t('Ашуға болатын нұсқа: ', 'Можно открыть вариантов: ') + a.c + '. ' + t('Жабық нұсқадағы «Ашу» түймесін басыңыз.', 'Нажмите «Открыть» у закрытого варианта.') + '</p>' : '') + '<div class="lst">'
+  T.forEach(function (v) {
+    var o = open_(v), b = S.best[v.id], sub = v.n + t(' тапсырма · ', ' заданий · ') + v.time + t(' минут', ' минут') + (b != null ? t(' · Үздік нәтиже: ', ' · Лучший результат: ') + b + ' / ' + mx(v) : '')
+    h += '<div class="row"><div class="t"><b>' + nm(v) + '</b><span>' + sub + '</span></div>' + (o ? '<button class="btn sm" data-start="' + v.id + '">' + (b != null ? t('Қайта шешу', 'Решить снова') : t('Бастау', 'Начать')) + '</button>' : '<span class="lk">' + LK + ' ' + t('Жабық', 'Закрыт') + '</span><button class="btn sm g" data-lock="' + v.id + '">' + t('Ашу', 'Открыть') + '</button>') + '</div>'
+  })
+  $('app').innerHTML = h + '</div><p class="note" style="margin-left:0"><a href="/" style="color:var(--bl)">' + t('‹ Барлық емтихандар', '‹ Все экзамены') + '</a></p></div>'
+}
+function unlockV(id) {
+  DY.api('/api/shop?a=unlock', { body: { token: DY.token(), id: id } }).then(function (j) { DY.closeM(); if (j.token) DY.setToken(j.token); else DY.toast(t('Ашу мүмкін болмады', 'Не удалось открыть')); list() })
+}
+function lockInfo(id) {
+  var a = DY.access()
+  if (a.c > 0) return DY.modal('<h3>' + nm(V(id)) + t(' ашу керек пе?', ' — открыть?') + '</h3><p>' + t('Ашуға болатын нұсқа саны: ', 'Можно открыть вариантов: ') + a.c + '. ' + t('Ашылған нұсқаны кейін ауыстыру мүмкін емес.', 'Открытый вариант потом нельзя заменить.') + '</p><div class="bt"><button class="btn" data-unlock="' + id + '">' + t('Ашу', 'Открыть') + '</button><button class="btn g" data-act="close">' + t('Болдырмау', 'Отмена') + '</button></div>')
+  DY.modal('<h3>' + nm(V(id)) + t(' жабық', ' закрыт') + '</h3><p>' + t('Пакеттер: 1 нұсқа — 4 000 ₸, 3 нұсқа — 8 000 ₸, 5 нұсқа — 12 000 ₸, 15 нұсқа — 25 000 ₸.', 'Пакеты: 1 вариант — 4 000 ₸, 3 — 8 000 ₸, 5 — 12 000 ₸, 15 — 25 000 ₸.') + '</p><div class="bt"><button class="btn" data-buy="rf15">' + t('15 нұсқа сатып алу', 'Купить 15 вариантов') + '</button><button class="btn g" data-buy="rf1">' + t('1 нұсқа сатып алу', 'Купить 1 вариант') + '</button><button class="btn g" data-act="code">' + t('Менде код бар', 'У меня есть код') + '</button></div>')
+}
+function img(id, p) {
+  return fetch('/api/rfmsh?v=' + id + '&p=' + p, { headers: { Authorization: 'Bearer ' + DY.token() } }).then(function (r) { if (!r.ok) throw 0; return r.blob() }).then(function (b) { var u = URL.createObjectURL(b); urls.push(u); return u })
+}
+function start(id) {
+  var v = V(id); clearInterval(tmr); Q = { v: v, a: [], left: v.time * 60 }
+  var h = '<div class="tp"><div class="in"><button class="btn sm g" data-x="exit">' + t('Шығу', 'Выйти') + '</button><span class="tm" id="tm" aria-live="off">' + fmt(Q.left) + '</span><button class="btn sm" data-x="fin">' + t('Аяқтау', 'Завершить') + '</button></div></div><div class="tw"><div class="pgs" id="pgs"><p class="empty">' + t('Тапсырмалар жүктелуде…', 'Загружаем задания…') + '</p></div>'
+  h += '<aside class="ans" id="as" aria-label="' + t('Жауап парағы', 'Бланк ответов') + '"><h3>' + t('Жауап парағы', 'Бланк ответов') + '</h3><p class="cn" id="cn"></p><div class="ag">'
+  for (var i = 0; i < v.n; i++) {
+    if (id !== 16 && i % 10 === 0) h += '<div class="lv">' + 'ABC'[i / 10] + t(' деңгейі · ', ' уровень · ') + pt(v, i) + t(' балл', ' б.') + '</div>'
+    h += '<label><span>' + (i + 1) + '</span><input inputmode="numeric" autocomplete="off" data-i="' + i + '" aria-label="' + t('Жауап ', 'Ответ ') + (i + 1) + '"></label>'
+  }
+  h += '</div></aside></div><button class="btn fab" id="fab" data-x="tg"></button>'
+  $('app').innerHTML = h; cnt(); scrollTo(0, 0)
+  fetch('/api/rfmsh?v=' + id, { headers: { Authorization: 'Bearer ' + DY.token() } }).then(function (r) { return r.json() }).then(function (j) {
+    if (!j.pages) throw 0
+    var ps = []; for (var p = 0; p < j.pages; p++) ps.push(img(id, p))
+    return Promise.all(ps)
+  }).then(function (list) {
+    if (!Q) return
+    $('pgs').innerHTML = list.map(function (u) { return '<img src="' + u + '" alt="' + t('Тапсырмалар', 'Задания') + '">' }).join('')
+  }).catch(function () { if ($('pgs')) $('pgs').innerHTML = '<p class="empty">' + t('Тапсырмалар жүктелмеді. Интернетті тексеріп, қайта ашыңыз.', 'Не удалось загрузить задания. Проверьте интернет и откройте снова.') + '</p>' })
+  tmr = setInterval(function () { Q.left--; if (Q.left <= 0) fin(); else { var x = $('tm'); if (x) { x.textContent = fmt(Q.left); x.className = 'tm' + (Q.left < 300 ? ' lo' : '') } } }, 1000)
+}
+function cnt() { var k = 0; for (var i = 0; i < Q.v.n; i++) if (Q.a[i]) k++; var s = k + ' / ' + Q.v.n; $('cn').textContent = t('Толтырылды: ', 'Заполнено: ') + s; $('fab').textContent = t('Жауап парағы · ', 'Бланк ответов · ') + s }
+function exitT() { DY.modal('<h3>' + t('Тесттен шығу керек пе?', 'Выйти из теста?') + '</h3><p>' + t('Нәтиже сақталмайды.', 'Результат не сохранится.') + '</p><div class="bt"><button class="btn" data-x="leave">' + t('Шығу', 'Выйти') + '</button><button class="btn g" data-act="close">' + t('Жалғастыру', 'Продолжить') + '</button></div>') }
+function askFin() { var k = 0; for (var i = 0; i < Q.v.n; i++) if (Q.a[i]) k++; var e = Q.v.n - k; DY.modal('<h3>' + t('Тестті аяқтау керек пе?', 'Завершить тест?') + '</h3><p>' + (e ? t('Толтырылмаған жауаптар: ', 'Пустых ответов: ') + e + '. ' + t('Олар қате деп есептеледі.', 'Они засчитаются как неверные.') : t('Барлық жауаптар толтырылды.', 'Все ответы заполнены.')) + '</p><div class="bt"><button class="btn" data-x="done">' + t('Аяқтау', 'Завершить') + '</button><button class="btn g" data-act="close">' + t('Оралу', 'Вернуться') + '</button></div>') }
+function fin() {
+  clearInterval(tmr); DY.closeM()
+  var v = Q.v, used = v.time * 60 - Q.left
+  $('app').innerHTML = '<div class="pw"><p class="empty">' + t('Тексерілуде…', 'Проверяем…') + '</p></div>'
+  fetch('/api/rfmsh?v=' + v.id, { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + DY.token() }, body: JSON.stringify({ a: Q.a }) }).then(function (r) { return r.json() }).then(function (R) {
+    var sc = R.score, rows = ''
+    R.rows.forEach(function (r, i) { rows += '<div class="rr ' + (r.ok ? 'ok' : 'no') + '"><span>' + (i + 1) + '</span><b>' + (r.a ? DY.esc(r.a) : '—') + '</b><span>' + r.k + '</span><span>' + (r.ok ? '+' + r.p : '0') + '</span></div>' })
+    if (S.best[v.id] == null || S.best[v.id] < sc) { S.best[v.id] = sc; sv() }
+    var lv = R.levels
+    var h = '<div class="tp"><div class="in"><span class="logo">' + nm(v) + '</span><button class="btn sm" data-x="list">' + t('Дайын', 'Готово') + '</button></div></div><div class="pw" style="padding-top:20px"><div class="sc"><div class="b">' + sc + ' / ' + R.max + '</div><p>' + t('Дұрыс жауап: ', 'Верных ответов: ') + R.ok + ' / ' + R.n + t(' · Уақыт: ', ' · Время: ') + fmt(used) + '</p></div>'
+    if (v.id !== 16) h += '<div class="lb"><div><b>' + lv[0][0] + ' / 10</b><span>A · ' + lv[0][1] + t(' балл', ' б.') + '</span></div><div><b>' + lv[1][0] + ' / 10</b><span>B · ' + lv[1][1] + t(' балл', ' б.') + '</span></div><div><b>' + lv[2][0] + ' / 10</b><span>C · ' + lv[2][1] + t(' балл', ' б.') + '</span></div></div>'
+    else h += '<div class="empty" style="margin-top:14px">' + t('Толық нұсқалар: 30 тапсырма, 150 балл. ', 'Полные варианты: 30 заданий, 150 баллов. ') + '<button class="btn sm" data-buy="rf15">' + t('Барлығын ашу', 'Открыть все') + '</button></div>'
+    h += '<div class="lst" style="margin-top:18px"><div class="rr h"><span>№</span><span>' + t('Сіздің жауап', 'Ваш ответ') + '</span><span>' + t('Дұрыс жауап', 'Верный ответ') + '</span><span>' + t('Балл', 'Балл') + '</span></div>' + rows + '</div><div class="nv"><button class="btn g" data-start="' + v.id + '">' + t('Қайта шешу', 'Решить снова') + '</button><button class="btn" data-x="list">' + t('Тізімге оралу', 'К списку') + '</button></div></div>'
+    Q = null; $('app').innerHTML = h; scrollTo(0, 0)
+  }).catch(function () { $('app').innerHTML = '<div class="pw"><p class="empty">' + t('Тексеру мүмкін болмады. Интернетті тексеріңіз.', 'Не удалось проверить. Проверьте интернет.') + '</p><div class="nv"><button class="btn" data-x="list">OK</button></div></div>' })
+}
+$('app').addEventListener('input', function (e) { var el = e.target; if (el.dataset.i == null || !Q) return; el.value = el.value.replace(/[^\d-]/g, ''); Q.a[+el.dataset.i] = el.value; cnt() })
+document.addEventListener('click', function (e) {
+  var b = e.target.closest('[data-start],[data-lock],[data-unlock],[data-x]'); if (!b) return
+  if (b.dataset.start) { DY.closeM(); start(+b.dataset.start) }
+  else if (b.dataset.lock) lockInfo(+b.dataset.lock)
+  else if (b.dataset.unlock) unlockV(+b.dataset.unlock)
+  else { var x = b.dataset.x; if (x === 'exit') exitT(); else if (x === 'fin') askFin(); else if (x === 'done') fin(); else if (x === 'leave') { DY.closeM(); list() } else if (x === 'list') list(); else if (x === 'tg') $('as').classList.toggle('on') }
+})
+migrate().then(route, route)
+})
+</script>
+</body></html>

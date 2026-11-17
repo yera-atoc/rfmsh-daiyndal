@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Админ · Daiyndal</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="/assets/mark.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/site.css">
+<style>.box{background:var(--bg);border-radius:var(--r2);padding:24px;margin-top:16px}.box h3{font-size:19px;font-weight:600}.out{font:15px ui-monospace,Menlo,monospace;white-space:pre-wrap;background:var(--bg2);border-radius:12px;padding:14px;margin-top:14px;user-select:all}.row2{display:flex;gap:8px;flex-wrap:wrap}.row2>*{flex:1;min-width:140px}</style>
+</head><body style="background:var(--bg2)">
+<main class="pw" style="max-width:640px">
+  <h1>Админ</h1>
+  <p class="lead">Коды для ручных продаж (Kaspi, наличные) и восстановление кода по номеру платежа.</p>
+  <div class="box"><h3>Пароль</h3><input id="pw" type="password" autocomplete="current-password" placeholder="ADMIN_PASSWORD"><div class="row2"><button class="btn" id="login" style="margin-top:12px">Войти</button></div><p class="err" id="e0"></p></div>
+  <div id="tools" hidden>
+    <div class="box"><h3>Выпустить коды</h3><div class="row2"><select id="pr"></select><input id="cnt" type="number" min="1" max="50" value="1" aria-label="Количество"></div><button class="btn" id="gen" style="margin-top:12px">Создать</button><div class="out" id="o1" hidden></div></div>
+    <div class="box"><h3>Восстановить код по платежу</h3><p class="lk">Номер платежа покупатель видит после оплаты, вы — в кабинете CloudPayments (поле InvoiceId).</p><input id="inv" placeholder="nzm-0123456789abcdef"><button class="btn" id="rec" style="margin-top:12px">Проверить и показать код</button><div class="out" id="o2" hidden></div></div>
+    <div class="box"><h3>Проверить код</h3><input id="cc" placeholder="XXXX-XXXX-XXXX-XXXX"><button class="btn g" id="chk" style="margin-top:12px">Проверить</button><div class="out" id="o3" hidden></div></div>
+  </div>
+</main>
+<script>
+(function () {
+  var $ = function (i) { return document.getElementById(i) }, pw = ''
+  function call(b) { b.password = pw; return fetch('/api/admin', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(b) }).then(function (r) { return r.json().then(function (j) { j._s = r.status; return j }) }) }
+  function show(id, txt) { var o = $(id); o.hidden = false; o.textContent = txt }
+  $('login').onclick = function () {
+    pw = $('pw').value
+    call({ a: 'products' }).then(function (j) {
+      if (!j.products) { $('e0').textContent = j._s === 429 ? 'Слишком много попыток, подождите 15 минут.' : 'Неверный пароль.'; return }
+      $('e0').textContent = ''; $('tools').hidden = false
+      $('pr').innerHTML = j.products.map(function (p) { return '<option value="' + p.id + '">' + p.id + ' — ' + p.title.replace(/</g, '&lt;') + ' (' + p.price + ' ₸)' + (p.hidden ? ' [скрыт]' : '') + '</option>' }).join('')
+    })
+  }
+  $('gen').onclick = function () { call({ a: 'codes', product: $('pr').value, count: +$('cnt').value }).then(function (j) { show('o1', j.codes ? j.codes.join('\n') : 'Ошибка: ' + j.error) }) }
+  $('rec').onclick = function () { call({ a: 'invoice', invoiceId: $('inv').value }).then(function (j) { show('o2', j.code ? j.product + '\n' + j.code : j.error === 'not_paid' ? 'Платёж не найден или не завершён.' : j.error === 'card_disabled' ? 'CloudPayments не настроен.' : 'Ошибка: ' + j.error) }) }
+  $('chk').onclick = function () { call({ a: 'check', code: $('cc').value }).then(function (j) { show('o3', j.valid ? 'Действителен: ' + j.product : 'Недействителен') }) }
+})()
+</script>
+</body></html>

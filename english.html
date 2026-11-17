@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="kk"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>IELTS және TOEFL нұсқаулығы · Daiyndal</title>
+<meta name="description" content="IELTS Academic және TOEFL iBT (2026) форматы, band кестесі, әр бөлімге кеңестер, пайдалы сөз тіркестері және ресми тегін материалдар.">
+<link rel="icon" href="/assets/mark.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/site.css">
+<script src="/assets/english-data.js"></script>
+<script src="/assets/site.js" defer></script>
+<style>
+.fs{background:var(--bg);border-radius:var(--r2);padding:6px 24px;margin-top:12px}
+.r4{display:grid;grid-template-columns:110px 90px 1fr;gap:14px;padding:14px 0;border-bottom:1px solid var(--ln);font-size:15px}.r4:last-child{border:0}
+.r4 p{color:var(--mu);grid-column:3}.r4 b{font-weight:600}
+.lg{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;margin-top:12px}
+.lg a{display:block;background:var(--bg);border-radius:16px;padding:16px 18px}.lg a:hover{box-shadow:0 0 0 2px var(--bl)}.lg a span{display:block;color:var(--mu);font-size:14px;margin-top:2px}
+.bt3{display:grid;grid-template-columns:1fr 1fr 70px;gap:10px;padding:9px 0;border-bottom:1px solid var(--ln);font-size:15px;font-variant-numeric:tabular-nums}.bt3.h{color:var(--mu);font-size:13px;font-weight:600}
+@media(max-width:620px){.r4{grid-template-columns:1fr 1fr}.r4 p{grid-column:1/-1}}
+</style>
+</head><body style="background:var(--bg2)">
+<span hidden data-ru-title="Гид по IELTS и TOEFL · Daiyndal"></span>
+<header class="top"><div class="w">
+  <a class="logo" href="/"><img src="/assets/mark.svg" alt="">Daiyndal</a>
+  <div class="hd-r" style="margin-left:auto"><div class="lang" role="group" aria-label="Тіл / Язык"><button data-lang="kk" aria-pressed="true">ҚАЗ</button><button data-lang="ru" aria-pressed="false">РУС</button></div><a class="btn sm" href="/test.html?cat=ielts&amp;demo=1" data-ru="Демо IELTS">IELTS демо</a></div>
+</div></header>
+<main class="pw">
+  <h1 data-ru="Гид по IELTS и TOEFL">IELTS және TOEFL нұсқаулығы</h1>
+  <p class="lead" data-ru="Формат, баллы, советы и официальные бесплатные материалы. Тексты советов — на казахском.">Формат, балл, кеңестер және ресми тегін материалдар.</p>
+  <div id="out"></div>
+  <div class="empty" style="margin-top:34px"><h3 style="color:var(--tx);font-size:22px" data-ru="Проверьте себя на mock-тесте">Mock тестте өзіңізді тексеріңіз</h3><p style="margin:8px 0 16px" data-ru="Бесплатное демо Reading — без регистрации.">Reading демосы тегін, тіркелусіз.</p><div class="acts" style="margin-top:0"><a class="btn" href="/test.html?cat=ielts&amp;demo=1">IELTS</a><a class="btn g" href="/test.html?cat=toefl&amp;demo=1">TOEFL</a></div></div>
+</main>
+<footer class="ft"><div class="w"><span data-ru="IELTS и TOEFL — товарные знаки их владельцев. Ссылки ведут на официальные сайты; материалы принадлежат British Council, IDP, Cambridge и ETS.">IELTS пен TOEFL — иелерінің тауар белгілері. Сілтемелер ресми сайттарға апарады; материалдар British Council, IDP, Cambridge және ETS-ке тиесілі.</span><a href="/">Daiyndal</a></div></footer>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var t = DY.t, esc = DY.esc, E = window.EN
+  function links(arr) { return '<div class="lg">' + arr.map(function (l) { return '<a href="' + esc(l[2]) + '" target="_blank" rel="noopener noreferrer"><b>' + esc(l[0]) + ' ↗</b><span>' + esc(l[1]) + '</span></a>' }).join('') + '</div>' }
+  function render() {
+    var h = '<h2 class="h3s">' + t('IELTS Academic форматы', 'Формат IELTS Academic') + '</h2><div class="fs">' + E.FORMAT.map(function (r) { return '<div class="r4"><b>' + esc(r[0]) + '</b><span>' + esc(r[1]) + '</span><span>' + esc(r[2]) + '</span><p>' + esc(r[3]) + '</p></div>' }).join('') + '</div>'
+    h += '<p class="note" style="margin-left:0">' + t('Overall band — төрт бөлімнің орташасы, ең жақын 0,5-ке дөңгелектенеді (6,25 → 6,5; 6,75 → 7,0).', 'Overall band — среднее четырёх частей, округляется до ближайших 0,5 (6,25 → 6,5; 6,75 → 7,0).') + '</p>'
+    h += '<h2 class="h3s">' + t('TOEFL iBT форматы (2026)', 'Формат TOEFL iBT (2026)') + '</h2><div class="fs">' + E.TOEFL_FORMAT.map(function (r) { return '<div class="r4"><b>' + esc(r[0]) + '</b><span>' + esc(r[1]) + '</span><span>' + esc(r[2]) + '</span><p>' + esc(r[3]) + '</p></div>' }).join('') + '</div>'
+    h += '<h2 class="h3s">' + t('IELTS: дұрыс жауап → band (40 сұрақ)', 'IELTS: верные ответы → band (40 вопросов)') + '</h2><div class="fs"><div class="bt3 h"><span>Listening</span><span>Reading (Academic)</span><span>Band</span></div>' + E.BANDS.map(function (b) { return '<div class="bt3"><span>' + b[0] + '</span><span>' + b[1] + '</span><b>' + b[2] + '</b></div>' }).join('') + '</div>'
+    h += '<h2 class="h3s">' + t('Әр бөлімге кеңестер', 'Советы по частям') + '</h2>' + E.TIPS.map(function (x) { return '<details class="fs" style="padding:4px 24px"><summary>' + esc(x[0]) + '</summary><ul>' + x[1].map(function (y) { return '<li>' + esc(y) + '</li>' }).join('') + '</ul></details>' }).join('')
+    h += '<h2 class="h3s">' + t('Пайдалы сөз тіркестері', 'Полезные фразы') + '</h2>' + E.PHRASES.map(function (x) { return '<div class="fs" style="padding:16px 24px"><b>' + esc(x[0]) + '</b><ul style="color:var(--mu)">' + x[1].map(function (y) { return '<li>' + esc(y) + '</li>' }).join('') + '</ul></div>' }).join('')
+    h += '<h2 class="h3s">' + t('TOEFL: ресми тегін материалдар', 'TOEFL: официальные бесплатные материалы') + '</h2>' + links(E.ETS)
+    E.OFFICIAL.forEach(function (g) { h += '<h2 class="h3s">IELTS · ' + esc(g.org) + '</h2>' + links(g.links) })
+    document.getElementById('out').innerHTML = h
+  }
+  document.addEventListener('langchange', render)
+  render()
+})
+</script>
+</body></html>

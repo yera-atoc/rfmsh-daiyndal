@@ -1,0 +1,10 @@
+{
+  "name": "daiyndal-shop",
+  "private": true,
+  "description": "Daiyndal: РФМШ, НЗМ, БИЛ, IELTS, TOEFL сынақ тесттері мен материалдар дүкені",
+  "scripts": {
+    "dev": "node scripts/dev.js",
+    "test": "node --test tests/api.test.js"
+  },
+  "engines": { "node": ">=18" }
+}
