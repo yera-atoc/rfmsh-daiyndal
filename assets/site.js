@@ -81,23 +81,17 @@
   function catalog() { return catP || (catP = api('/api/shop?a=catalog').then(function (j) { if (!j.products) { catP = null } return j })) }
   function product(id) { return catalog().then(function (c) { return (c.products || []).filter(function (p) { return p.id === id })[0] }) }
 
-  // ── Сатып алу ──
+  // ── Сатып алу: батырманы басқанда бірден карта төлемі ашылады ──
+  var paying = false
   function buy(id) {
+    if (paying) return
     catalog().then(function (c) {
       var p = (c.products || []).filter(function (x) { return x.id === id })[0]
       if (!p) return toast(t('Өнім табылмады', 'Товар не найден'))
+      if (c.pay && c.pay.card) return payCard(p)
+      // Карта әлі қосылмаған (CloudPayments кілттері жоқ) — уақытша WhatsApp арқылы
       var wa = 'https://wa.me/' + (c.whatsapp || '') + '?text=' + encodeURIComponent(t('Сәлеметсіз бе! Мен сатып алғым келеді: ', 'Здравствуйте! Хочу купить: ') + p.title[lang] + ' (' + fmt(p.price) + ' ₸)')
-      var card = c.pay && c.pay.card
-      modal('<h3>' + esc(p.title[lang]) + '</h3><p>' + t('Бір реттік төлем. Төлемнен кейін бірден ашылады және активация кодын аласыз — оны басқа құрылғыда да қолдана аласыз.', 'Разовая оплата. Доступ откроется сразу, а вы получите код активации — его можно ввести и на другом устройстве.') + '</p>' +
-        '<div class="sum"><span>' + t('Сомасы', 'Сумма') + '</span><b>' + fmt(p.price) + ' ₸</b></div>' +
-        (card ? '<input id="pe" type="email" autocomplete="email" inputmode="email" placeholder="' + t('Email — түбіртек үшін (міндетті емес)', 'Email для чека (необязательно)') + '">' +
-          '<label class="ck"><input type="checkbox" id="pa"> <span>' + t('<a href="/oferta.html" target="_blank" style="color:var(--bl)">Оферта</a> және <a href="/privacy.html" target="_blank" style="color:var(--bl)">құпиялылық саясатымен</a> келісемін', 'Согласен(на) с <a href="/oferta.html" target="_blank" style="color:var(--bl)">офертой</a> и <a href="/privacy.html" target="_blank" style="color:var(--bl)">политикой конфиденциальности</a>') + '</span></label>' +
-          '<p class="err" id="pm"></p>' : '') +
-        '<div class="bt">' + (card ? '<button class="btn" id="pb">' + t('Картамен төлеу', 'Оплатить картой') + ' · ' + fmt(p.price) + ' ₸</button><a class="btn g" href="' + wa + '" target="_blank" rel="noopener">' + t('Kaspi / WhatsApp арқылы', 'Через Kaspi / WhatsApp') + '</a>'
-          : '<a class="btn" href="' + wa + '" target="_blank" rel="noopener">' + t('WhatsApp арқылы сатып алу', 'Купить через WhatsApp') + '</a>') +
-        '<button class="btn g" data-act="code">' + t('Менде код бар', 'У меня есть код') + '</button><button class="btn l" data-act="close">' + t('Жабу', 'Закрыть') + '</button></div>' +
-        '<p style="font-size:12px;margin-top:14px">🔒 ' + t('Карта деректерін біз көрмейміз және сақтамаймыз: оларды төлем жүйесі (CloudPayments) қабылдайды.', 'Мы не видим и не храним данные карты: их принимает платёжная система (CloudPayments).') + '</p>')
-      var pb = $('#pb'); if (pb) pb.onclick = function () { payCard(p) }
+      modal('<h3>' + esc(p.title[lang]) + '</h3><p>' + t('Картамен онлайн төлем жақында қосылады. Әзірге WhatsApp арқылы сатып алыңыз.', 'Онлайн-оплата картой скоро заработает. Пока купите через WhatsApp.') + '</p><div class="sum"><span>' + t('Сомасы', 'Сумма') + '</span><b>' + fmt(p.price) + ' ₸</b></div><div class="bt"><a class="btn" href="' + wa + '" target="_blank" rel="noopener">' + t('WhatsApp арқылы сатып алу', 'Купить через WhatsApp') + '</a><button class="btn g" data-act="code">' + t('Менде код бар', 'У меня есть код') + '</button><button class="btn l" data-act="close">' + t('Жабу', 'Закрыть') + '</button></div>')
     })
   }
 
@@ -110,39 +104,45 @@
   }
 
   function payCard(p) {
-    var pm = $('#pm'), pb = $('#pb')
-    if (!$('#pa').checked) { pm.textContent = t('Офертамен келісуіңізді белгілеңіз.', 'Отметьте согласие с офертой.'); return }
-    var email = ($('#pe').value || '').trim()
-    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { pm.textContent = t('Email дұрыс емес.', 'Неверный email.'); return }
-    pb.disabled = true; pm.textContent = ''
-    api('/api/shop?a=checkout', { body: { product: p.id, lang: lang } }).then(function (o) {
-      if (!o.invoiceId) { pb.disabled = false; pm.textContent = t('Төлемді бастау мүмкін болмады. Кейінірек көріңіз.', 'Не удалось начать оплату. Попробуйте позже.'); return }
+    paying = true
+    var fail = function (m) { paying = false; toast(m || t('Төлемді бастау мүмкін болмады. Кейінірек көріңіз.', 'Не удалось начать оплату. Попробуйте позже.')) }
+    Promise.all([api('/api/shop?a=checkout', { body: { product: p.id, lang: lang } }), loadWidget()]).then(function (r) {
+      var o = r[0]
+      if (!o.invoiceId) return fail()
       var pend = JSON.parse(LS.get('dy_pending') || '[]'); pend.push(o.invoiceId); LS.set('dy_pending', JSON.stringify(pend.slice(-5)))
-      return loadWidget().then(function () {
-        closeM()
-        var w = new window.cp.CloudPayments({ language: lang === 'ru' ? 'ru-RU' : 'kk' })
-        var data = { publicId: o.publicId, description: o.description, amount: o.amount, currency: o.currency, invoiceId: o.invoiceId, skin: 'modern' }
-        if (email) { data.email = email; data.accountId = email }
-        w.pay('charge', data, {
-          onSuccess: function () { claim(o.invoiceId, 0) },
-          onFail: function () { toast(t('Төлем өтпеді. Қайта көріңіз.', 'Платёж не прошёл. Попробуйте ещё раз.')) },
-        })
+      var w = new window.cp.CloudPayments({ language: lang === 'ru' ? 'ru-RU' : 'kk' })
+      w.pay('charge', { publicId: o.publicId, description: o.description, amount: o.amount, currency: o.currency, invoiceId: o.invoiceId, skin: 'modern' }, {
+        onSuccess: function () { claim(o.invoiceId, 0, p) },
+        onFail: function (reason) { paying = false; if (reason !== 'User has cancelled') toast(t('Төлем өтпеді. Қайта көріңіз.', 'Платёж не прошёл. Попробуйте ещё раз.')) },
+        onComplete: function () { paying = false },
       })
-    }).catch(function () { pb.disabled = false; pm.textContent = t('Желі қатесі.', 'Ошибка сети.') })
+    }).catch(function () { fail(t('Желі қатесі. Қайта көріңіз.', 'Ошибка сети. Попробуйте снова.')) })
   }
 
-  /** Төлемді серверден тексеріп, код пен қолжетімділік алу. Статус кешігуі мүмкін — бірнеше рет қайталаймыз. */
-  function claim(inv, tries) {
+  // Төлемнен кейін қай бетке бару керек
+  function dest(p) {
+    if (!p) return '/my.html'
+    if (p.cat === 'rfmsh') return '/rfmsh/#practice'
+    if (p.id === 'formulas' || p.id === 'nisguide') return '/material.html?id=' + p.id
+    if (p.cat === 'bundle') return '/my.html'
+    return '/my.html?cat=' + p.cat
+  }
+
+  /** Төлемді серверден тексеріп, қолжетімділікті бірден ашу. Статус кешігуі мүмкін — бірнеше рет қайталаймыз. */
+  function claim(inv, tries, p) {
     if (!tries) modal('<h3>' + t('Төлем тексерілуде…', 'Проверяем платёж…') + '</h3><p>' + t('Бірнеше секунд күтіңіз.', 'Подождите несколько секунд.') + '</p>')
     return api('/api/shop?a=claim', { body: { invoiceId: inv, token: token() } }).then(function (j) {
       if (j.token) {
         setToken(j.token)
         var pend = JSON.parse(LS.get('dy_pending') || '[]').filter(function (x) { return x !== inv }); LS.set('dy_pending', JSON.stringify(pend))
+        // Код «Менің тесттерім» бетінде сақталады — басқа құрылғыда ашу үшін
         var codes = JSON.parse(LS.get('dy_codes') || '[]'); if (codes.indexOf(j.code) < 0) codes.push(j.code); LS.set('dy_codes', JSON.stringify(codes))
-        modal('<h3>' + t('Төлем қабылданды ✓', 'Оплата прошла ✓') + '</h3><p>' + t('Қолжетімділік ашылды. Активация кодын сақтап қойыңыз — оны басқа телефон не компьютерде енгізуге болады.', 'Доступ открыт. Сохраните код активации — его можно ввести на другом телефоне или компьютере.') + '</p><div class="code">' + esc(j.code) + '</div><div class="bt"><a class="btn" href="/my.html">' + t('Менің тесттерім', 'Мои тесты') + '</a><button class="btn g" data-act="copy" data-v="' + esc(j.code) + '">' + t('Кодты көшіру', 'Скопировать код') + '</button></div>')
+        var to = dest(p)
+        modal('<h3>' + t('Төлем қабылданды ✓', 'Оплата прошла ✓') + '</h3><p>' + t('Қолжетімділік ашылды. Қазір бастай аласыз.', 'Доступ открыт. Можно начинать.') + '</p><div class="bt"><a class="btn" href="' + to + '">' + t('Бастау', 'Начать') + '</a></div>')
+        setTimeout(function () { if (location.pathname + location.search + location.hash !== to) location.href = to; else { closeM(); document.dispatchEvent(new Event('access')) } }, 1800)
         return true
       }
-      if (j._status === 402 && tries < 6) return new Promise(function (r) { setTimeout(r, 2500) }).then(function () { return claim(inv, tries + 1) })
+      if (j._status === 402 && tries < 8) return new Promise(function (r) { setTimeout(r, 2500) }).then(function () { return claim(inv, tries + 1, p) })
       modal('<h3>' + t('Төлем әлі расталмады', 'Платёж ещё не подтверждён') + '</h3><p>' + t('Егер ақша шешілсе, бетті бірнеше минуттан кейін жаңартыңыз — тексеру автоматты түрде қайталанады. Болмаса, WhatsApp-қа жазыңыз, төлем нөмірі:', 'Если деньги списались, обновите страницу через пару минут — проверка повторится автоматически. Или напишите в WhatsApp, номер платежа:') + '</p><div class="code" style="font-size:14px">' + esc(inv) + '</div><div class="bt"><button class="btn g" data-act="close">' + t('Жабу', 'Закрыть') + '</button></div>')
       return false
     })
