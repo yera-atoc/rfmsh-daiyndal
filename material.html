@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="kk"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Материал · Daiyndal</title>
+<link rel="icon" href="/assets/mark.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/site.css">
+<script src="/assets/site.js" defer></script>
+<style>
+.fs{background:var(--bg);border-radius:var(--r2);padding:8px 24px;margin-top:14px}
+.fr{display:grid;grid-template-columns:40px 1fr;gap:12px;padding:16px 0;border-bottom:1px solid var(--ln)}.fr:last-child{border:0}
+.fr .k{font-weight:700;color:var(--bl);font-variant-numeric:tabular-nums}.fr b{display:block;font-weight:600}
+.fr code{display:block;font:500 17px ui-monospace,Menlo,monospace;background:var(--bg2);border-radius:10px;padding:10px 12px;margin-top:8px;white-space:pre-wrap}
+.fr .ex{color:var(--mu);font-size:15px;margin-top:6px}
+.gt{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:10px;padding:10px 0;border-bottom:1px solid var(--ln);font-size:15px}.gt.h{color:var(--mu);font-size:13px;font-weight:600}
+.lock{background:linear-gradient(180deg,rgba(245,245,247,0),var(--bg2) 40%);margin-top:-60px;padding:80px 0 10px;text-align:center;position:relative}
+@media print{.lock,.acts{display:none}}
+</style>
+</head><body style="background:var(--bg2)">
+<header class="top"><div class="w">
+  <a class="logo" href="/"><img src="/assets/mark.svg" alt="">Daiyndal</a>
+  <div class="hd-r" style="margin-left:auto"><div class="lang" role="group" aria-label="Тіл / Язык"><button data-lang="kk" aria-pressed="true">ҚАЗ</button><button data-lang="ru" aria-pressed="false">РУС</button></div><a class="btn sm g" href="/my.html" data-ru="Мои тесты">Менің тесттерім</a></div>
+</div></header>
+<main class="pw" id="out"><p class="empty">…</p></main>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var t = DY.t, esc = DY.esc, id = new URLSearchParams(location.search).get('id'), D = null
+  var META = {
+    formulas: { buy: 'formulas', title: ['«Математика формулалары»', '«Математические формулы»'], lead: ['НЗМ, БИЛ және РФМШ емтихандарына керек 67 формула. Авторы — Қайрат Жолтай.', '67 формул для экзаменов НИШ, БИЛ и РФМШ. Автор — Кайрат Жолтай.'] },
+    nisguide: { buy: 'nisguide', title: ['НЗМ-ге дайындық нұсқаулығы', 'Гид по подготовке к НИШ'], lead: ['Әр пәннің форматы, дайындық жоспары, лайфхактар және грант балдары.', 'Формат каждого предмета, план подготовки, лайфхаки и проходные баллы.'] },
+  }
+  var M = META[id]; if (!M) { location.replace('/'); return }
+  function paywall(more) {
+    return '<div class="lock"><h3 style="font-size:24px;font-weight:700;letter-spacing:-.02em">' + t('Толық нұсқасы — ', 'Полная версия — ') + more + '</h3><p class="lk" style="margin:8px 0 18px">' + t('Бір рет төлеп, онлайн оқып, басып шығарыңыз.', 'Оплатите один раз — читайте онлайн и печатайте.') + '</p><div class="acts" style="margin-top:0"><button class="btn" data-buy="' + M.buy + '">' + t('Сатып алу', 'Купить') + '</button><button class="btn g" data-act="code">' + t('Менде код бар', 'У меня есть код') + '</button></div></div>'
+  }
+  function render() {
+    if (!D) return
+    document.title = t(M.title[0], M.title[1]) + ' · Daiyndal'
+    var h = '<h1>' + t(M.title[0], M.title[1]) + '</h1><p class="lead">' + t(M.lead[0], M.lead[1]) + '</p>'
+    if (id === 'formulas') {
+      var sec = {}; D.formulas.forEach(function (f) { (sec[f.section] = sec[f.section] || []).push(f) })
+      Object.keys(sec).forEach(function (s) {
+        h += '<h2 class="h3s">' + esc(s) + '</h2><div class="fs">' + sec[s].map(function (f) { return '<div class="fr"><span class="k">' + f.n + '</span><div><b>' + esc(f.name) + '</b><code>' + esc(f.formula) + '</code>' + (f.example ? '<p class="ex">' + esc(f.example) + '</p>' : '') + '</div></div>' }).join('') + '</div>'
+      })
+      if (!D.open) h += paywall(D.total + t(' формула', ' формул'))
+    } else {
+      h += '<h2 class="h3s">' + t('Шкала', 'Шкала') + '</h2><div class="fs"><p style="padding:16px 0">' + t('Жалпы ', 'Всего ') + D.total + t(' балл. Грант үшін математикадан ≥ 35 %, сандық сипаттамадан ≥ 40 %.', ' баллов. Для гранта: математика ≥ 35 %, количественные характеристики ≥ 40 %.') + '</p></div>'
+      D.tips.forEach(function (s) {
+        h += '<h2 class="h3s">' + esc(s.name) + ' · ' + esc(s.format) + '</h2><div class="fs" style="padding:18px 24px"><p>' + esc(s.why) + '</p><p style="font-weight:600;margin-top:14px">' + t('Қалай дайындалу', 'Как готовиться') + '</p><ul style="color:var(--mu)">' + s.plan.map(function (x) { return '<li>' + esc(x) + '</li>' }).join('') + '</ul><p style="font-weight:600;margin-top:10px">' + t('Лайфхактар', 'Лайфхаки') + '</p><ul style="color:var(--mu)">' + s.hacks.map(function (x) { return '<li>' + esc(x) + '</li>' }).join('') + '</ul></div>'
+      })
+      if (D.open) h += '<h2 class="h3s">' + t('Грант иегерлерінің балдары, ', 'Баллы обладателей гранта, ') + D.year + '</h2><div class="fs"><div class="gt h"><span>' + t('Мектеп', 'Школа') + '</span><span>' + t('Ең жоғары', 'Макс.') + '</span><span>' + t('Ең төмен', 'Мин.') + '</span></div>' + D.grant.map(function (g) { return '<div class="gt"><span>' + esc(g.name) + '</span><span>' + g.max + '</span><span>' + g.min + '</span></div>' }).join('') + '</div><p class="note" style="margin-left:0">' + t('Дереккөз: НЗМ-нің ресми жарияланымы. Келесі жылы шек өзгеруі мүмкін.', 'Источник: официальная публикация НИШ. В следующем году пороги могут измениться.') + '</p>'
+      else h += paywall(D.totalSubjects + t(' пән + грант балдары', ' предметов + проходные баллы'))
+    }
+    if (D.open) h += '<div class="acts" style="justify-content:flex-start"><button class="btn g" onclick="print()">' + t('Басып шығару', 'Распечатать') + '</button></div>'
+    document.getElementById('out').innerHTML = h
+  }
+  function load() { DY.api('/api/material?id=' + id).then(function (j) { D = j; render() }) }
+  document.addEventListener('access', load)
+  document.addEventListener('langchange', render)
+  load()
+})
+</script>
+</body></html>

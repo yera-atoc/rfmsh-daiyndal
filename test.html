@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="kk"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Сынақ · Daiyndal</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/assets/mark.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/site.css">
+<script src="/assets/site.js" defer></script>
+<style>
+body{background:var(--bg2)}
+.tp{position:sticky;top:0;background:var(--nav);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--ln);z-index:10}
+.tp .in{max-width:1180px;margin:0 auto;padding:10px 22px;display:flex;align-items:center;gap:12px}
+.tp .ttl{font-weight:600;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tm{font-variant-numeric:tabular-nums;font-weight:600}.tm.lo{color:var(--no)}
+.wrap{max-width:1180px;margin:0 auto;padding:18px 22px 110px}
+.tabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none}
+.tabs button{flex:none;border:0;background:var(--bg);color:var(--mu);padding:8px 14px;border-radius:980px;font-weight:500;font-size:14px;font-family:inherit;cursor:pointer;box-shadow:0 0 0 1px rgba(0,0,0,.05)}
+.tabs button[aria-selected=true]{background:var(--tx);color:#fff}
+.tabs button small{opacity:.7;margin-left:6px}
+.qc{background:var(--bg);border-radius:var(--r2);padding:28px;margin-top:14px}
+.qc .m{color:var(--mu);font-size:14px;margin-bottom:10px}.qc .qt{font-size:20px;line-height:1.45;white-space:pre-wrap}
+.qc .ps{background:var(--bg2);border-radius:var(--r1);padding:16px 18px;margin-bottom:16px;white-space:pre-wrap;font-size:16px;line-height:1.55;max-height:46vh;overflow:auto}
+.qc img.qi{display:block;max-width:100%;border-radius:12px;margin:12px 0;border:1px solid var(--ln);background:#fff}
+.op{display:flex;gap:14px;align-items:center;width:100%;text-align:left;font-weight:400;font-size:17px;font-family:inherit;color:var(--tx);background:var(--bg);border:1.5px solid var(--ln);border-radius:14px;padding:13px 16px;margin-top:10px;cursor:pointer}
+.op i{font-style:normal;width:28px;height:28px;border-radius:50%;border:1.5px solid var(--ln);display:grid;place-items:center;font-size:13px;font-weight:600;color:var(--mu);flex:none}
+.op.s{border-color:var(--bl);background:rgba(0,113,227,.06)}.op.s i{background:var(--bl);border-color:var(--bl);color:#fff}
+.nv .btn.g,.empty .btn.g{background:var(--bg)}.nv{display:flex;justify-content:space-between;margin-top:18px;gap:10px;flex-wrap:wrap}
+.dots{display:flex;flex-wrap:wrap;gap:6px;margin-top:18px}
+.dt{width:34px;height:34px;border-radius:50%;border:0;background:var(--bg);color:var(--tx);font-weight:500;font-size:13px;font-family:inherit;cursor:pointer}.dt.a{background:var(--tx);color:#fff}.dt.d{background:rgba(0,113,227,.15);color:var(--bl)}
+.dt.ok{background:rgba(29,155,80,.15);color:var(--ok)}.dt.no{background:rgba(227,0,0,.1);color:var(--no)}
+.sc{text-align:center;padding:24px 0 6px}.sc .b{font-size:clamp(56px,12vw,88px);font-weight:700;letter-spacing:-.05em;line-height:1}.sc p{color:var(--mu);margin-top:8px}
+.sb{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:18px 0}.sb>div{background:var(--bg);border-radius:16px;padding:16px;text-align:center}.sb>div>b{display:block;font-size:22px;letter-spacing:-.02em}.sb>div>span{color:var(--mu);font-size:13px}
+.bar{height:6px;background:var(--bg2);border-radius:6px;margin-top:8px;overflow:hidden}.bar i{display:block;height:100%;background:var(--bl);border-radius:6px}
+/* English */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:14px;align-items:start}
+.pane{background:var(--bg);border-radius:var(--r2);padding:24px}
+.pane.sticky{position:sticky;top:64px;max-height:calc(100vh - 84px);overflow:auto}
+.pane h3{font-size:19px;font-weight:600;margin-bottom:10px}
+.ptext{white-space:pre-wrap;font-size:16px;line-height:1.65}
+.grp{margin-top:22px}.grp:first-child{margin-top:0}.grp h4{margin:0;font-size:15px}.grp .ins{font-style:italic;color:#3a3a3c;font-size:15px;margin-top:4px;white-space:pre-wrap}
+.qq{margin-top:14px;font-size:16px}.qq .n{display:inline-grid;place-items:center;min-width:28px;height:28px;border:1.5px solid var(--tx);border-radius:8px;font-weight:700;font-size:13px;margin-right:8px;padding:0 4px}
+.qq input.gap{display:inline-block;width:170px;margin:0 4px;padding:6px 10px;font-size:16px}
+.chs{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0 36px}.chs.col{flex-direction:column}
+.ch{display:flex;gap:8px;align-items:flex-start;border:1.5px solid var(--ln);border-radius:10px;padding:7px 12px;cursor:pointer;font-size:15px;background:var(--bg)}
+.ch input{width:auto;margin:3px 0 0}.ch.s{border-color:var(--bl);background:rgba(0,113,227,.06)}
+.opts{background:var(--bg2);border-radius:12px;padding:12px 14px;margin-top:10px;font-size:15px}
+.cloze{background:var(--bg2);border-radius:12px;padding:16px;line-height:2.5;font-size:16px;margin-top:10px}
+.cloze input{display:inline-block;margin:0 1px;padding:0 4px;border:0;border-bottom:2px solid #9a9aa0;border-radius:4px;background:rgba(0,113,227,.07);font:15px ui-monospace,Menlo,monospace;text-align:center;width:auto}
+.mk{font-size:12px;font-weight:700;border-radius:6px;padding:2px 6px;margin-left:6px}.mk.ok{background:rgba(29,155,80,.15);color:var(--ok)}.mk.no{background:rgba(227,0,0,.1);color:var(--no)}
+.chip{border:1.5px solid var(--ln);background:var(--bg);border-radius:9px;padding:5px 10px;font:15px inherit;font-family:inherit;cursor:pointer;color:var(--tx)}
+.chip.on{border-color:var(--bl);background:rgba(0,113,227,.07)}
+.drop{display:flex;flex-wrap:wrap;gap:6px;min-height:44px;border:2px dashed var(--ln);border-radius:12px;padding:6px;margin:8px 0 0 36px;align-items:center}
+.pool{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0 36px}
+textarea{min-height:260px;line-height:1.55;resize:vertical}
+.wc{color:var(--mu);font-size:14px;margin-top:6px}
+.rec{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:8px}
+.rec audio{height:36px}
+audio.main{width:100%;margin:6px 0 4px}
+@media(max-width:900px){.split{grid-template-columns:1fr}.pane.sticky{position:static;max-height:none}.qc{padding:20px}}
+</style>
+</head><body>
+<div id="app"><div class="wrap"><p class="empty" style="margin-top:40px" data-ru="Загрузка…">Жүктелуде…</p></div></div>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+'use strict'
+var t = DY.t, esc = DY.esc, $ = function (s) { return document.querySelector(s) }, app = $('#app')
+var qs = new URLSearchParams(location.search), CAT = qs.get('cat'), ID = qs.get('id'), DEMO = qs.get('demo') === '1'
+var NAMES = { nzm: ['НЗМ', 'НИШ'], bil: ['БИЛ', 'БИЛ'], ielts: ['IELTS', 'IELTS'], toefl: ['TOEFL', 'TOEFL'] }
+if (!NAMES[CAT]) { location.replace('/'); return }
+var catName = function () { return t(NAMES[CAT][0], NAMES[CAT][1]) }
+var D = null, A = null, R = null, cur = { s: 0, q: 0 }, tmr = null, left = 0, KEY = ''
+
+function bar(title, right) { return '<div class="tp"><div class="in"><a class="btn sm g" href="/my.html?cat=' + CAT + '">‹ ' + t('Шығу', 'Выйти') + '</a><span class="ttl">' + esc(title) + '</span>' + (right || '') + '</div></div>' }
+function msg(h) { app.innerHTML = bar(catName()) + '<div class="wrap" style="max-width:720px"><div class="empty" style="margin-top:30px">' + h + '</div></div>' }
+function fmt(s) { s = Math.max(0, s); var h = Math.floor(s / 3600), m = Math.floor(s % 3600 / 60), r = s % 60, p = function (x) { return (x < 10 ? '0' : '') + x }; return (h ? h + ':' : '') + p(m) + ':' + p(r) }
+function save() { if (A) DY.LS.set(KEY, JSON.stringify({ a: A, left: left, cur: cur })) }
+
+function load() {
+  var go = function (id) {
+    ID = id; KEY = 'dy_run:' + CAT + ':' + id + (DEMO ? ':d' : '')
+    DY.api('/api/exam?cat=' + CAT + '&id=' + encodeURIComponent(id) + (DEMO ? '&demo=1' : '')).then(function (j) {
+      if (j._status === 403) return msg('<h3 style="color:var(--tx);margin-bottom:8px">' + t('Бұл нұсқа жабық', 'Этот вариант закрыт') + '</h3><p>' + t('Толық нұсқаларды ашу үшін пакетті сатып алыңыз немесе код енгізіңіз.', 'Купите пакет или введите код, чтобы открыть полные варианты.') + '</p><div class="acts"><button class="btn" data-buy="' + CAT + '">' + t('Сатып алу', 'Купить') + '</button><button class="btn g" data-act="code">' + t('Менде код бар', 'У меня есть код') + '</button></div>')
+      if (!j.kind) return msg(t('Сынақ жүктелмеді. Кейінірек көріңіз.', 'Не удалось загрузить тест. Попробуйте позже.'))
+      D = j
+      var saved = null; try { saved = JSON.parse(DY.LS.get(KEY) || 'null') } catch (e) {}
+      if (D.kind === 'bt') {
+        A = saved && saved.a || {}; D.subjects.forEach(function (s) { A[s.id] = A[s.id] || [] })
+        left = saved && saved.left > 0 ? saved.left : D.minutes * 60; cur = saved && saved.cur || { s: 0, q: 0 }
+        if (cur.s >= D.subjects.length) cur = { s: 0, q: 0 }
+        btRender()
+      } else {
+        A = saved && saved.a || { listening: {}, reading: {}, build: {}, writing: {} }
+        D.secs = ['listening', 'reading', 'writing', 'speaking'].filter(function (s) { return D[s] && hasContent(s) })
+        cur = saved && saved.cur || { s: 0 }; if (cur.s >= D.secs.length) cur = { s: 0 }
+        left = saved && saved.left > 0 ? saved.left : secMinutes(D.secs[cur.s]) * 60
+        enRender()
+      }
+      clearInterval(tmr)
+      tmr = setInterval(function () { left--; var el = $('#tm'); if (el) { el.textContent = fmt(left); el.className = 'tm' + (left < 300 ? ' lo' : '') } if (left % 15 === 0) save(); if (left <= 0 && D.kind === 'bt') { clearInterval(tmr); finish() } }, 1000)
+    })
+  }
+  if (ID) return go(ID)
+  DY.api('/api/exam?cat=' + CAT).then(function (j) {
+    if (!j.tests || !j.tests.length) return msg('<h3 style="color:var(--tx);margin-bottom:8px">' + t('Нұсқалар жақында қосылады', 'Варианты скоро появятся') + '</h3><p>' + t('Бұл бөлімнің сынақтары дайындалуда.', 'Пробники этого раздела готовятся.') + '</p><p style="margin-top:14px"><a class="btn g" href="/">' + t('Басты бет', 'На главную') + '</a></p>')
+    if (DEMO) return go(j.tests[0].id)
+    location.replace('/my.html?cat=' + CAT)
+  })
+}
+
+// ───────── НЗМ / БИЛ ─────────
+function btRender() {
+  var S = D.subjects[cur.s], q = S.questions[cur.q], ans = A[S.id] || []
+  var right = '<span class="tm" id="tm">' + fmt(left) + '</span><button class="btn sm" data-x="ask">' + t('Аяқтау', 'Завершить') + '</button>'
+  var h = bar((DEMO ? t('Демо · ', 'Демо · ') : '') + D.title, right) + '<div class="wrap" style="max-width:860px"><div class="tabs" role="tablist">'
+  D.subjects.forEach(function (s, i) { var k = (A[s.id] || []).filter(Boolean).length; h += '<button role="tab" aria-selected="' + (i === cur.s) + '" data-s="' + i + '">' + esc(s.name) + '<small>' + k + '/' + s.questions.length + '</small></button>' })
+  h += '</div>'
+  if (DEMO) h += '<p class="lk" style="margin-top:10px">' + t('Демо: әр пәннен алғашқы ' + S.questions.length + ' сұрақ. Толық нұсқада — ' + S.n + ' сұрақ.', 'Демо: первые ' + S.questions.length + ' вопросов по каждому предмету. В полном варианте — ' + S.n + '.') + '</p>'
+  h += '<div class="qc"><p class="m">' + esc(S.name) + ' · ' + t('Сұрақ ', 'Вопрос ') + (cur.q + 1) + ' / ' + S.questions.length + ' · ' + Math.round(S.max / S.n) + t(' балл', ' б.') + '</p>'
+  var pass = ''; for (var i = cur.q; i >= 0; i--) { if (S.questions[i].passage) { pass = S.questions[i].passage; break } }
+  if (pass) h += '<div class="ps">' + esc(pass) + '</div>'
+  if (q.text) h += '<div class="qt">' + esc(q.text) + '</div>'
+  if (q.image) h += '<img class="qi" src="' + esc(q.image) + '" alt="' + t('Сұрақтың суреті', 'Изображение к вопросу') + '">'
+  var L = 'ABCDE'.slice(0, S.options)
+  L.split('').forEach(function (k, i) { var o = q.options[i]; h += '<button class="op' + (ans[cur.q] === k ? ' s' : '') + '" data-o="' + k + '"><i>' + k + '</i><span>' + (o ? esc(o) : '') + '</span></button>' })
+  h += '<div class="nv"><button class="btn g" data-x="prev"' + (cur.q === 0 && cur.s === 0 ? ' disabled' : '') + '>‹ ' + t('Алдыңғы', 'Назад') + '</button><button class="btn" data-x="next">' + (cur.q === S.questions.length - 1 && cur.s === D.subjects.length - 1 ? t('Аяқтау', 'Завершить') : t('Келесі', 'Далее') + ' ›') + '</button></div></div>'
+  h += '<div class="dots">'; S.questions.forEach(function (_, i) { h += '<button class="dt' + (i === cur.q ? ' a' : ans[i] ? ' d' : '') + '" data-q="' + i + '" aria-label="' + t('Сұрақ ', 'Вопрос ') + (i + 1) + '">' + (i + 1) + '</button>' }); h += '</div></div>'
+  app.innerHTML = h
+}
+function btClick(b) {
+  var S = D.subjects[cur.s]
+  if (b.dataset.o) { A[S.id][cur.q] = A[S.id][cur.q] === b.dataset.o ? '' : b.dataset.o; save(); return btRender() }
+  if (b.dataset.s) { cur = { s: +b.dataset.s, q: 0 }; save(); return btRender() }
+  if (b.dataset.q) { cur.q = +b.dataset.q; save(); return btRender() }
+  var x = b.dataset.x
+  if (x === 'prev') { if (cur.q > 0) cur.q--; else if (cur.s > 0) { cur.s--; cur.q = D.subjects[cur.s].questions.length - 1 } save(); btRender(); scrollTo(0, 0) }
+  if (x === 'next') { if (cur.q < S.questions.length - 1) cur.q++; else if (cur.s < D.subjects.length - 1) cur = { s: cur.s + 1, q: 0 }; else return ask(); save(); btRender(); scrollTo(0, 0) }
+}
+function btEmpty() { var e = 0; D.subjects.forEach(function (s) { for (var i = 0; i < s.questions.length; i++) if (!(A[s.id] || [])[i]) e++ }); return e }
+function btResult() {
+  var h = bar(D.title, '<a class="btn sm" href="/my.html?cat=' + CAT + '">' + t('Дайын', 'Готово') + '</a>') + '<div class="wrap" style="max-width:860px"><div class="sc"><div class="b">' + R.total + ' / ' + R.max + '</div><p>' + (DEMO ? t('Демо нәтижесі', 'Результат демо') : esc(D.title)) + '</p></div><div class="sb">'
+  R.subjects.forEach(function (s) { var p = s.max ? Math.round(100 * s.pts / s.max) : 0; h += '<div><b>' + s.pts + ' / ' + s.max + '</b><span>' + esc(s.name) + ' · ' + s.ok + '/' + s.n + '</span><div class="bar"><i style="width:' + p + '%"></i></div></div>' })
+  h += '</div>'
+  if (CAT === 'nzm' && !DEMO) {
+    var m = R.subjects.filter(function (s) { return s.id === 'math' })[0], q = R.subjects.filter(function (s) { return s.id === 'quant' })[0]
+    var chk = function (s, need, nm) { if (!s) return ''; var p = Math.round(100 * s.pts / s.max); return '<li>' + nm + ': ' + p + '% ' + (p >= need ? '✓' : '✗ (' + t('кемінде ', 'нужно ≥ ') + need + '%)') + '</li>' }
+    h += '<div class="qc"><h3 style="font-size:19px">' + t('Грант шегі', 'Порог гранта') + '</h3><ul style="color:var(--mu);margin:8px 0 0;padding-left:20px">' + chk(m, 35, t('Математика', 'Математика')) + chk(q, 40, t('Сандық сипаттама', 'Количественные характеристики')) + '</ul><p class="lk" style="margin-top:10px">' + t('2026 жылы грант алғандардың ең төменгі балы қалаға байланысты шамамен 890–1300.', 'В 2026 году минимальный балл обладателей гранта — примерно 890–1300 в зависимости от города.') + '</p></div>'
+  }
+  if (DEMO) h += '<div class="qc" style="text-align:center"><h3 style="font-size:21px">' + t('Толық нұсқаларды ашыңыз', 'Откройте полные варианты') + '</h3><p style="color:var(--mu);margin:8px 0 16px">' + t('Барлық сұрақтар, барлық пәндер, жаңа нұсқалар тегін.', 'Все вопросы, все предметы, новые варианты — бесплатно.') + '</p><button class="btn" data-buy="' + CAT + '">' + t('Сатып алу', 'Купить') + '</button></div>'
+  h += '<h3 class="h3s">' + t('Жауаптар', 'Ответы') + '</h3>'
+  R.subjects.forEach(function (s, si) {
+    var Sx = D.subjects[si]
+    h += '<div class="qc"><h3 style="font-size:18px;margin-bottom:6px">' + esc(s.name) + '</h3><div class="dots" style="margin-top:6px">'
+    s.rows.forEach(function (r, i) { h += '<button class="dt ' + (r.ok ? 'ok' : 'no') + '" data-rv="' + si + ':' + i + '" title="' + (r.g || '—') + ' → ' + r.k + '">' + (i + 1) + '</button>' })
+    h += '</div><div id="rv' + si + '"></div></div>'
+  })
+  h += '<div class="nv"><button class="btn g" data-x="again">' + t('Қайта шешу', 'Решить снова') + '</button><a class="btn" href="/my.html?cat=' + CAT + '">' + t('Тізімге оралу', 'К списку') + '</a></div></div>'
+  app.innerHTML = h
+}
+function btReview(si, i) {
+  var s = R.subjects[si], r = s.rows[i], q = D.subjects[si].questions[i] || {}
+  var h = '<div style="margin-top:14px;border-top:1px solid var(--ln);padding-top:14px"><p class="m" style="color:var(--mu);font-size:14px">' + t('Сұрақ ', 'Вопрос ') + (i + 1) + ' · ' + t('Сіздің жауап: ', 'Ваш ответ: ') + '<b>' + (r.g || '—') + '</b> · ' + t('Дұрыс: ', 'Верно: ') + '<b style="color:var(--ok)">' + r.k + '</b></p>'
+  if (q.text) h += '<div class="qt" style="font-size:17px;white-space:pre-wrap">' + esc(q.text) + '</div>'
+  if (q.image) h += '<img class="qi" src="' + esc(q.image) + '" alt="">'
+  if (q.options && q.options.length) h += '<div class="opts">' + q.options.map(function (o, k) { var L = 'ABCDE'[k]; return '<div' + (L === r.k ? ' style="color:var(--ok);font-weight:600"' : L === r.g ? ' style="color:var(--no)"' : '') + '><b>' + L + '</b> ' + esc(o) + '</div>' }).join('') + '</div>'
+  document.getElementById('rv' + si).innerHTML = h + '</div>'
+}
+
+// ───────── IELTS / TOEFL ─────────
+function hasContent(s) {
+  if (s === 'listening') return (D.listening.parts || []).some(function (p) { return (p.groups || []).length })
+  if (s === 'reading') return (D.reading.passages || []).some(function (p) { return (p.groups || []).length })
+  if (s === 'writing') return !!((D.writing.task1 && D.writing.task1.prompt) || (D.writing.task2 && D.writing.task2.prompt) || (D.writing.build || []).length)
+  return (D.speaking.parts || []).some(function (p) { return (p.questions || []).length })
+}
+function secMinutes(s) { var toefl = D.exam === 'toefl'; if (s === 'listening') return D.listening.minutes || (toefl ? 29 : 32); if (s === 'reading') return D.reading.minutes || (toefl ? 30 : 60); if (s === 'writing') return D.writing.minutes || (toefl ? 23 : 60); return toefl ? 8 : 14 }
+var SN = { listening: 'Listening', reading: 'Reading', writing: 'Writing', speaking: 'Speaking' }
+function optKey(o, i) { var m = String(o).trim().match(/^([A-Z]|[ivxlc]+)[\s.)]/i); return m ? m[1] : String.fromCharCode(65 + i) }
+function optText(o) { return String(o).trim().replace(/^([A-Z]|[ivxlc]+)[\s.)]+/i, '') }
+function mark(sec, n) { var r = R && R.sections[sec] && R.sections[sec].review[n]; if (!r) return ''; return '<span class="mk ' + (r.ok ? 'ok' : 'no') + '">' + (r.ok ? '✓' : '✗ ' + esc(r.correct || '')) + '</span>' }
+function groups(gs, sec) {
+  var ans = A[sec] || {}, dis = R ? ' disabled' : ''
+  return (gs || []).map(function (g) {
+    var it = g.items || []; if (!it.length) return ''
+    var a = it[0].n, b = it[it.length - 1].n
+    var h = '<div class="grp"><h4>Questions ' + a + (b !== a ? '–' + b : '') + '</h4>' + (g.instructions ? '<p class="ins">' + esc(g.instructions) + '</p>' : '')
+    if (g.type === 'matching' && (g.options || []).some(function (o, i) { return optText(o) !== optKey(o, i) })) h += '<div class="opts">' + g.options.map(function (o, i) { return '<div><b>' + esc(optKey(o, i)) + '</b> ' + esc(optText(o)) + '</div>' }).join('') + '</div>'
+    if (g.type === 'cloze') {
+      var parts = String(g.text || '').split(/\[(\d+)\]/)
+      h += '<p class="cloze">' + parts.map(function (c, i) {
+        if (i % 2 === 0) return esc(c)
+        var q = it[+c - 1]; if (!q) return ''
+        var m = String(q.prompt).match(/^(.*?)(_+)(.*)$/), pre = m ? m[1] : q.prompt, len = m ? m[2].length : 4
+        return '<span style="white-space:nowrap">' + esc(pre) + '<input data-sec="' + sec + '" data-n="' + q.n + '" value="' + esc(ans[q.n] || '') + '" maxlength="' + (len + 2) + '" style="width:' + (len * 0.72 + 1) + 'em" autocomplete="off" spellcheck="false" aria-label="Question ' + q.n + '"' + dis + '>' + esc(m ? m[3] : '') + mark(sec, q.n) + '</span>'
+      }).join('') + '</p>'
+      return h + '</div>'
+    }
+    it.forEach(function (q) {
+      var v = ans[q.n] || '', num = '<span class="n">' + q.n + '</span>'
+      if (g.type === 'gap') {
+        var ps = String(q.prompt).split(/_{3,}/), inp = '<input class="gap" data-sec="' + sec + '" data-n="' + q.n + '" value="' + esc(v) + '" autocomplete="off" spellcheck="false" aria-label="Question ' + q.n + '"' + dis + '>'
+        h += '<div class="qq">' + num + (ps.length > 1 ? ps.map(function (p, i) { return esc(p) + (i < ps.length - 1 ? inp : '') }).join('') : esc(q.prompt) + ' ' + inp) + mark(sec, q.n) + '</div>'
+      } else if (g.type === 'order') {
+        var used = v ? v.split(' ') : [], left = (q.options || []).slice()
+        used.forEach(function (w) { var k = left.indexOf(w); if (k >= 0) left.splice(k, 1) })
+        h += '<div class="qq">' + num + esc(q.prompt) + mark(sec, q.n) + '<div class="drop">' + (used.length ? used.map(function (w, i) { return '<button class="chip on" data-ord="' + sec + ':' + q.n + ':rm:' + i + '"' + dis + '>' + esc(w) + '</button>' }).join('') : '<span class="lk">' + t('Сөздерді ретімен басыңыз', 'Нажимайте слова по порядку') + '</span>') + '</div>' + (R ? '' : '<div class="pool">' + left.map(function (w) { return '<button class="chip" data-ord="' + sec + ':' + q.n + ':add:' + esc(w) + '">' + esc(w) + '</button>' }).join('') + '</div>') + '</div>'
+      } else {
+        var ch = g.type === 'tfng' ? ['TRUE', 'FALSE', 'NOT GIVEN'].map(function (x) { return [x, x] }) : g.type === 'ynng' ? ['YES', 'NO', 'NOT GIVEN'].map(function (x) { return [x, x] }) : g.type === 'matching' ? (g.options || []).map(function (o, i) { return [optKey(o, i), optKey(o, i)] }) : (q.options || []).map(function (o, i) { return [optKey(o, i), o] })
+        h += '<fieldset class="qq" style="border:0;padding:0;margin:14px 0 0"><legend>' + num + esc(q.prompt) + mark(sec, q.n) + '</legend><div class="chs' + (g.type === 'mcq' ? ' col' : '') + '">' + ch.map(function (c) {
+          var on = v === c[0]
+          return '<label class="ch' + (on ? ' s' : '') + '"><input type="radio" name="' + sec + q.n + '" data-sec="' + sec + '" data-n="' + q.n + '" value="' + esc(c[0]) + '"' + (on ? ' checked' : '') + dis + '><span>' + (g.type === 'mcq' ? '<b>' + esc(c[0]) + '</b> ' + esc(optText(c[1])) : esc(c[1])) + '</span></label>'
+        }).join('') + '</div></fieldset>'
+      }
+    })
+    return h + '</div>'
+  }).join('')
+}
+function enRender() {
+  var sec = D.secs[cur.s]
+  var right = R ? '<a class="btn sm" href="/my.html?cat=' + CAT + '">' + t('Дайын', 'Готово') + '</a>' : '<span class="tm" id="tm" title="' + t('Бөлім уақыты', 'Время раздела') + '">' + fmt(left) + '</span><button class="btn sm" data-x="ask">' + t('Аяқтау', 'Завершить') + '</button>'
+  var h = bar((DEMO ? 'Demo · ' : '') + D.title, right) + '<div class="wrap">'
+  if (R) h += enScore()
+  h += '<div class="tabs" role="tablist">' + D.secs.map(function (s, i) { return '<button role="tab" aria-selected="' + (i === cur.s) + '" data-sec-tab="' + i + '">' + SN[s] + '<small>' + secMinutes(s) + ' min</small></button>' }).join('') + '</div>'
+  if (sec === 'listening') {
+    var L = D.listening
+    h += '<div class="pane" style="margin-top:14px">' + (L.audio ? '<audio class="main" controls preload="none" src="' + esc(L.audio) + '"></audio><p class="lk">' + t('Нағыз емтиханда аудио бір рет қана ойнайды. Тоқтатпай тыңдап көріңіз.', 'На настоящем экзамене аудио звучит один раз. Постарайтесь не останавливать.') + '</p>' : '')
+    ;(L.parts || []).forEach(function (p) { if ((p.groups || []).length) h += '<h3 style="margin-top:22px">' + esc(p.title) + '</h3>' + groups(p.groups, 'listening') })
+    h += '</div>'
+  } else if (sec === 'reading') {
+    var ps = (D.reading.passages || []).filter(function (p) { return (p.groups || []).length })
+    var pi = Math.min(cur.p || 0, ps.length - 1), P = ps[pi]
+    if (ps.length > 1) h += '<div class="tabs" style="margin-top:10px">' + ps.map(function (p, i) { return '<button aria-selected="' + (i === pi) + '" data-pas="' + i + '">' + esc(p.title || 'Passage ' + (i + 1)) + '</button>' }).join('') + '</div>'
+    h += P.text ? '<div class="split"><div class="pane sticky"><h3>' + esc(P.title) + '</h3><div class="ptext">' + esc(P.text) + '</div></div><div class="pane">' + groups(P.groups, 'reading') + '</div></div>' : '<div class="pane" style="margin-top:14px"><h3>' + esc(P.title) + '</h3>' + groups(P.groups, 'reading') + '</div>'
+  } else if (sec === 'writing') {
+    var W = D.writing, w = A.writing || {}
+    if ((W.build || []).length) h += '<div class="pane" style="margin-top:14px"><h3>Build a Sentence</h3>' + groups(W.build, 'build') + '</div>'
+    ;[['task1', D.exam === 'toefl' ? 'Write an Email' : 'Task 1'], ['task2', D.exam === 'toefl' ? 'Academic Discussion' : 'Task 2']].forEach(function (x) {
+      var T = W[x[0]]; if (!T || !T.prompt) return
+      var v = w[x[0]] || '', wc = v.trim() ? v.trim().split(/\s+/).length : 0
+      h += '<div class="pane" style="margin-top:14px"><h3>' + x[1] + '</h3><div class="ptext">' + esc(T.prompt) + '</div>' + (T.image ? '<img class="qi" src="' + esc(T.image) + '" alt="Task chart" style="display:block;max-width:100%;margin-top:12px;border-radius:12px">' : '') +
+        '<textarea data-w="' + x[0] + '" spellcheck="false" aria-label="' + x[1] + '"' + (R ? ' readonly' : '') + '>' + esc(v) + '</textarea><p class="wc" id="wc-' + x[0] + '">' + wc + ' / ' + (T.minWords || 0) + ' words</p></div>'
+    })
+  } else if (sec === 'speaking') {
+    h += '<div class="pane" style="margin-top:14px"><p class="lk">' + t('Жауабыңызды жазып, тыңдап көріңіз. Жазба тек осы құрылғыда қалады — серверге жіберілмейді.', 'Запишите ответ и прослушайте его. Запись остаётся только на этом устройстве и никуда не отправляется.') + '</p>'
+    ;(D.speaking.parts || []).forEach(function (p, pi) {
+      if (!(p.questions || []).length) return
+      h += '<h3 style="margin-top:22px">' + esc(p.title) + '</h3>' + (p.cueCard ? '<div class="opts" style="white-space:pre-wrap">' + esc(p.cueCard) + '</div>' : '')
+      p.questions.forEach(function (q, qi) {
+        var au = (p.audios || [])[qi]
+        h += '<div class="qq"><span class="n">' + (qi + 1) + '</span>' + (q ? esc(q) : '<i class="lk">' + t('Аудионы тыңдап, қайталаңыз', 'Прослушайте и повторите') + '</i>') + (au ? '<div><audio controls preload="none" src="' + esc(au) + '" style="height:36px;margin-top:6px"></audio></div>' : '') + '<div class="rec"><button class="btn sm g" data-rec="' + pi + '-' + qi + '">● ' + t('Жазу', 'Запись') + '</button><span id="rc-' + pi + '-' + qi + '"></span>' + (p.limit ? '<span class="lk">≤ ' + p.limit + ' s</span>' : '') + '</div></div>'
+      })
+    })
+    h += '</div>'
+  }
+  var last = cur.s === D.secs.length - 1
+  if (!R) h += '<div class="nv"><button class="btn g" data-x="eprev"' + (cur.s === 0 ? ' disabled' : '') + '>‹ ' + t('Алдыңғы бөлім', 'Предыдущий раздел') + '</button><button class="btn" data-x="' + (last ? 'ask' : 'enext') + '">' + (last ? t('Аяқтау', 'Завершить') : t('Келесі бөлім', 'Следующий раздел') + ' ›') + '</button></div>'
+  else h += '<div class="nv"><button class="btn g" data-x="again">' + t('Қайта шешу', 'Решить снова') + '</button><a class="btn" href="/my.html?cat=' + CAT + '">' + t('Тізімге оралу', 'К списку') + '</a></div>'
+  app.innerHTML = h + '</div>'
+}
+function enScore() {
+  var S = R.sections, toefl = D.exam === 'toefl', bands = []
+  var h = '<div class="sb" style="margin-top:6px">'
+  ;['listening', 'reading', 'build'].forEach(function (k) { var s = S[k]; if (!s) return; if (k !== 'build') bands.push(s.band); h += '<div><b>' + (s.band == null ? '—' : s.band) + '</b><span>' + (k === 'build' ? 'Build a Sentence' : SN[k]) + ' · ' + s.raw + '/' + s.of + '</span></div>' })
+  h += '</div>'
+  if (bands.length && !DEMO) { var avg = bands.reduce(function (a, b) { return a + b }, 0) / bands.length; avg = Math.round(avg * 2) / 2; h = '<div class="sc"><div class="b">' + avg + '</div><p>' + (toefl ? t('Listening + Reading орташа балы (1–6)', 'Средний балл Listening + Reading (1–6)') : t('Listening + Reading бойынша болжамды band', 'Ориентировочный band по Listening + Reading')) + '</p></div>' + h }
+  h += '<p class="lk" style="margin-bottom:12px">' + t('Writing пен Speaking-ті өзіңіз тексеріңіз: төмендегі критерийлер бойынша. Дұрыс/қате жауаптар сұрақтардың жанында көрсетілген.', 'Writing и Speaking оцените сами по критериям ниже. Верные и неверные ответы отмечены рядом с вопросами.') + '</p>'
+  if (D.writing && !DEMO) h += '<details class="pane" style="margin-bottom:14px"><summary>' + t('Writing бағалау критерийлері', 'Критерии оценки Writing') + '</summary><ul>' + (toefl ? ['Task fulfillment — every point of the task is addressed', 'Organization — clear, logical progression', 'Language — range and accuracy of vocabulary and grammar', 'Email: appropriate tone for the reader; Discussion: your own idea with support'] : ['Task Achievement / Response', 'Coherence & Cohesion', 'Lexical Resource', 'Grammatical Range & Accuracy']).map(function (x) { return '<li>' + x + '</li>' }).join('') + '</ul></details>'
+  if (DEMO) h += '<div class="pane" style="text-align:center;margin-bottom:14px"><h3>' + t('Толық mock тесттерді ашыңыз', 'Откройте полные mock-тесты') + '</h3><p style="color:var(--mu);margin:6px 0 14px">Listening · Reading · Writing · Speaking</p><button class="btn" data-buy="' + CAT + '">' + t('Сатып алу', 'Купить') + '</button></div>'
+  return h
+}
+var recs = {}
+function rec(id, btn) {
+  if (recs[id] && recs[id].state === 'recording') { recs[id].stop(); return }
+  if (!navigator.mediaDevices || !window.MediaRecorder) return DY.toast(t('Бұл браузер дыбыс жазуды қолдамайды', 'Браузер не поддерживает запись звука'))
+  navigator.mediaDevices.getUserMedia({ audio: true }).then(function (st) {
+    var r = new MediaRecorder(st), ch = []; recs[id] = r
+    r.ondataavailable = function (e) { ch.push(e.data) }
+    r.onstop = function () { st.getTracks().forEach(function (x) { x.stop() }); var u = URL.createObjectURL(new Blob(ch, { type: r.mimeType })); var el = document.getElementById('rc-' + id); if (el) el.innerHTML = '<audio controls src="' + u + '"></audio>'; btn.textContent = '● ' + t('Қайта жазу', 'Перезаписать') }
+    r.start(); btn.textContent = '■ ' + t('Тоқтату', 'Стоп')
+  }).catch(function () { DY.toast(t('Микрофонға рұқсат берілмеді', 'Нет доступа к микрофону')) })
+}
+
+// ───────── Аяқтау ─────────
+function ask() {
+  var e = D.kind === 'bt' ? btEmpty() : 0
+  DY.modal('<h3>' + t('Аяқтау керек пе?', 'Завершить?') + '</h3><p>' + (e ? t('Жауапсыз сұрақтар: ', 'Без ответа: ') + e + '. ' + t('Олар қате деп есептеледі.', 'Они засчитаются как неверные.') : t('Жауаптарыңыз тексеріледі.', 'Ваши ответы будут проверены.')) + '</p><div class="bt"><button class="btn" data-x="done">' + t('Аяқтау', 'Завершить') + '</button><button class="btn g" data-act="close">' + t('Оралу', 'Вернуться') + '</button></div>')
+}
+function finish() {
+  DY.closeM(); clearInterval(tmr)
+  var body = D.kind === 'bt' ? { answers: A } : { answers: { listening: A.listening, reading: A.reading, build: A.build } }
+  DY.api('/api/exam?cat=' + CAT + '&id=' + encodeURIComponent(ID) + (DEMO ? '&demo=1' : ''), { body: body }).then(function (j) {
+    if (!j.kind) return DY.toast(t('Тексеру мүмкін болмады. Қайта көріңіз.', 'Не удалось проверить. Попробуйте снова.'))
+    R = j; DY.LS.del(KEY)
+    var hist = JSON.parse(DY.LS.get('dy_hist') || '{}'), score = j.kind === 'bt' ? j.total + ' / ' + j.max : Object.keys(j.sections).map(function (k) { return j.sections[k].band }).join(' · ')
+    if (!DEMO) { hist[CAT + ':' + ID] = { s: score, d: Date.now() }; DY.LS.set('dy_hist', JSON.stringify(hist)) }
+    if (j.kind === 'bt') btResult(); else { cur = { s: 0 }; enRender() }
+    scrollTo(0, 0)
+  })
+}
+
+app.addEventListener('click', function (e) {
+  var b = e.target.closest('button'); if (!b || !D) return
+  if (b.dataset.x === 'ask') return ask()
+  if (b.dataset.x === 'again') { R = null; A = null; DY.LS.del(KEY); return load() }
+  if (b.dataset.rv) { var p = b.dataset.rv.split(':'); return btReview(+p[0], +p[1]) }
+  if (D.kind === 'bt' && !R) return btClick(b)
+  if (b.dataset.secTab) { cur = { s: +b.dataset.secTab }; if (!R) left = secMinutes(D.secs[cur.s]) * 60; save(); enRender(); return scrollTo(0, 0) }
+  if (b.dataset.pas) { cur.p = +b.dataset.pas; return enRender() }
+  if (b.dataset.x === 'enext' || b.dataset.x === 'eprev') { cur = { s: cur.s + (b.dataset.x === 'enext' ? 1 : -1) }; left = secMinutes(D.secs[cur.s]) * 60; save(); enRender(); return scrollTo(0, 0) }
+  if (b.dataset.ord && !R) { var o = b.dataset.ord.split(':'), sec = o[0], n = o[1], cur2 = (A[sec][n] || '').split(' ').filter(Boolean); if (o[2] === 'add') cur2.push(o.slice(3).join(':')); else cur2.splice(+o[3], 1); A[sec][n] = cur2.join(' '); save(); return enRender() }
+  if (b.dataset.rec) return rec(b.dataset.rec, b)
+})
+document.addEventListener('click', function (e) { var b = e.target.closest('[data-x="done"]'); if (b) finish() })
+app.addEventListener('change', function (e) { var el = e.target; if (el.dataset.sec && el.type === 'radio') { A[el.dataset.sec][el.dataset.n] = el.value; save(); el.closest('.chs').querySelectorAll('.ch').forEach(function (l) { l.classList.toggle('s', l.contains(el)) }) } })
+app.addEventListener('input', function (e) {
+  var el = e.target
+  if (el.dataset.sec && el.type !== 'radio') { A[el.dataset.sec][el.dataset.n] = el.closest('.cloze') ? el.value.replace(/\s/g, '') : el.value; save() }
+  if (el.dataset.w) { A.writing = A.writing || {}; A.writing[el.dataset.w] = el.value; var T = D.writing[el.dataset.w], n = el.value.trim() ? el.value.trim().split(/\s+/).length : 0; document.getElementById('wc-' + el.dataset.w).textContent = n + ' / ' + (T.minWords || 0) + ' words'; save() }
+})
+document.addEventListener('access', function () { if (!D) load() })
+document.addEventListener('langchange', function () { if (!D) return; if (D.kind === 'bt') (R ? btResult : btRender)(); else enRender() })
+addEventListener('beforeunload', save)
+load()
+})
+</script>
+</body></html>

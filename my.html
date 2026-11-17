@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="kk"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Менің тесттерім · Daiyndal</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/assets/mark.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/site.css">
+<script src="/assets/site.js" defer></script>
+</head><body style="background:var(--bg2)">
+<span hidden data-ru-title="Мои тесты · Daiyndal"></span>
+<header class="top"><div class="w">
+  <a class="logo" href="/"><img src="/assets/mark.svg" alt="">Daiyndal</a>
+  <div class="hd-r" style="margin-left:auto"><div class="lang" role="group" aria-label="Тіл / Язык"><button data-lang="kk" aria-pressed="true">ҚАЗ</button><button data-lang="ru" aria-pressed="false">РУС</button></div>
+  <button class="btn sm g" data-act="code" data-ru="Ввести код">Код енгізу</button></div>
+</div></header>
+<main class="pw">
+  <h1 data-ru="Мои тесты">Менің тесттерім</h1>
+  <p class="lead" data-ru="Все пробники и материалы в одном месте. Доступ сохраняется в этом браузере; на другом устройстве введите код активации.">Барлық сынақтар мен материалдар бір жерде. Қолжетімділік осы браузерде сақталады; басқа құрылғыда активация кодын енгізіңіз.</p>
+  <div id="out"><p class="empty" data-ru="Загрузка…">Жүктелуде…</p></div>
+  <div id="codes"></div>
+</main>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var t = DY.t, esc = DY.esc, data = {}
+  var CATS = [
+    { c: 'rfmsh', n: ['РФМШ', 'РФМШ'], buy: 'rf15' },
+    { c: 'nzm', n: ['НЗМ', 'НИШ'], buy: 'nzm' },
+    { c: 'bil', n: ['БИЛ', 'БИЛ'], buy: 'bil' },
+    { c: 'ielts', n: ['IELTS', 'IELTS'], buy: 'ielts' },
+    { c: 'toefl', n: ['TOEFL', 'TOEFL'], buy: 'toefl' },
+  ]
+  var LK = '<svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 1a3.5 3.5 0 0 0-3.5 3.5V6H4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1h-.5V4.5A3.5 3.5 0 0 0 8 1Zm2 5H6V4.5a2 2 0 1 1 4 0V6Z"/></svg>'
+  function render() {
+    var hist = JSON.parse(DY.LS.get('dy_hist') || '{}'), a = DY.access(), h = ''
+    CATS.forEach(function (C) {
+      var open = C.c === 'rfmsh' ? (DY.has('rf') || a.u.length || a.c) : DY.has(C.c)
+      h += '<h2 class="h3s" id="c-' + C.c + '">' + t(C.n[0], C.n[1]) + (open ? ' <span class="pill ok">' + t('ашық', 'открыто') + '</span>' : '') + '</h2><div class="lst">'
+      if (C.c === 'rfmsh') {
+        h += '<div class="row"><div class="t"><b>' + t('РФМШ сынақ тесттері', 'Пробные тесты РФМШ') + '</b><span>' + (DY.has('rf') ? t('Барлық 15 нұсқа ашық', 'Открыты все 15 вариантов') : a.u.length || a.c ? t('Ашық: ', 'Открыто: ') + a.u.length + (a.c ? t(' · тағы ашуға болады: ', ' · можно открыть ещё: ') + a.c : '') : t('Тегін демо + 15 нұсқа', 'Бесплатное демо + 15 вариантов')) + '</span></div><a class="btn sm" href="/rfmsh/#practice">' + t('Ашу', 'Открыть') + '</a></div>'
+      } else {
+        var d = data[C.c]
+        if (!d) h += '<div class="row"><span class="lk">' + t('Жүктелуде…', 'Загрузка…') + '</span></div>'
+        else if (!d.tests || !d.tests.length) h += '<div class="row"><div class="t"><b>' + t('Нұсқалар жақында қосылады', 'Варианты скоро появятся') + '</b><span>' + t('Сатып алған болсаңыз, жаңа нұсқалар автоматты түрде ашылады.', 'Если вы уже купили, новые варианты откроются автоматически.') + '</span></div></div>'
+        else d.tests.forEach(function (x, i) {
+          var r = hist[C.c + ':' + x.id], sub = x.subjects ? x.subjects.map(function (s) { return s.name }).join(' · ') : (x.sections || []).join(' · ')
+          h += '<div class="row"><div class="t"><b>' + esc(x.title) + '</b><span>' + esc(sub) + (r ? ' · ' + t('Соңғы нәтиже: ', 'Последний результат: ') + esc(r.s) : '') + '</span></div>' +
+            (open ? '<a class="btn sm" href="/test.html?cat=' + C.c + '&id=' + encodeURIComponent(x.id) + '">' + (r ? t('Қайта шешу', 'Решить снова') : t('Бастау', 'Начать')) + '</a>'
+              : (i === 0 ? '<a class="btn sm g" href="/test.html?cat=' + C.c + '&demo=1">' + t('Демо', 'Демо') + '</a>' : '') + '<span class="lk">' + LK + '</span>') + '</div>'
+        })
+        if (!open && d && d.tests && d.tests.length) h += '<div class="row"><div class="t"><span>' + t('Барлық нұсқаларды ашу', 'Открыть все варианты') + '</span></div><button class="btn sm" data-buy="' + C.buy + '">' + t('Сатып алу', 'Купить') + '</button></div>'
+      }
+      h += '</div>'
+    })
+    h += '<h2 class="h3s">' + t('Материалдар', 'Материалы') + '</h2><div class="lst">' +
+      '<div class="row"><div class="t"><b>' + t('«Математика формулалары»', '«Математические формулы»') + '</b><span>67 ' + t('формула', 'формул') + '</span></div>' + (DY.has('mat-formulas') ? '<span class="pill ok">' + t('ашық', 'открыто') + '</span>' : '') + '<a class="btn sm' + (DY.has('mat-formulas') ? '' : ' g') + '" href="/material.html?id=formulas">' + t('Ашу', 'Открыть') + '</a></div>' +
+      '<div class="row"><div class="t"><b>' + t('НЗМ-ге дайындық нұсқаулығы', 'Гид по подготовке к НИШ') + '</b><span>' + t('6 пән · грант балдары', '6 предметов · проходные баллы') + '</span></div>' + (DY.has('mat-nis') ? '<span class="pill ok">' + t('ашық', 'открыто') + '</span>' : '') + '<a class="btn sm' + (DY.has('mat-nis') ? '' : ' g') + '" href="/material.html?id=nisguide">' + t('Ашу', 'Открыть') + '</a></div>' +
+      '<div class="row"><div class="t"><b>' + t('IELTS және TOEFL нұсқаулығы', 'Гид по IELTS и TOEFL') + '</b><span>' + t('Тегін', 'Бесплатно') + '</span></div><a class="btn sm g" href="/english.html">' + t('Оқу', 'Читать') + '</a></div></div>'
+    document.getElementById('out').innerHTML = h
+    var codes = JSON.parse(DY.LS.get('dy_codes') || '[]')
+    document.getElementById('codes').innerHTML = codes.length ? '<h2 class="h3s">' + t('Сіздің кодтарыңыз', 'Ваши коды') + '</h2><div class="lst">' + codes.map(function (c) { return '<div class="row"><div class="t"><b style="font-family:ui-monospace,Menlo,monospace">' + esc(c) + '</b><span>' + t('Басқа құрылғыда енгізу үшін сақтап қойыңыз', 'Сохраните, чтобы ввести на другом устройстве') + '</span></div><button class="btn sm g" data-act="copy" data-v="' + esc(c) + '">' + t('Көшіру', 'Копировать') + '</button></div>' }).join('') + '</div>' : ''
+    var want = new URLSearchParams(location.search).get('cat'), el = want && document.getElementById('c-' + want)
+    if (el && !render.scrolled) { render.scrolled = 1; el.scrollIntoView({ block: 'start' }) }
+  }
+  ;['nzm', 'bil', 'ielts', 'toefl'].forEach(function (c) { DY.api('/api/exam?cat=' + c).then(function (j) { data[c] = j; render() }, function () { data[c] = {}; render() }) })
+  document.addEventListener('access', render)
+  document.addEventListener('langchange', render)
+  render()
+})
+</script>
+</body></html>
